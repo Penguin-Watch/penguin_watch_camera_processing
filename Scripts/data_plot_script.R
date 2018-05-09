@@ -189,17 +189,17 @@ dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
 # AITCd2014 --------------------------------------------------------------
 
-#NEST COORDINATES
-AITCd2014_nc <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
-#CONSENSUS CLICKS
-AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
-output_dir <- paste0(dir, 'Images_with_polys/AITCd2014/')
-
-# Run function
-pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir, dim = c(2048, 1536))
+# #NEST COORDINATES
+# AITCd2014_nc <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
+# output_dir <- paste0(dir, 'Images_with_polys/AITCd2014/')
+# 
+# # Run function
+# pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir, dim = c(2048, 1536))
 
 
 
