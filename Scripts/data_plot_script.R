@@ -37,18 +37,45 @@ library(stringr)
 # function ----------------------------------------------------------------
 
 
-#nest_coords is nest locations with y transformed for upper left origin (not lower left)
-#consensus is consensus chick locations with y transformed for upper left origin (not lower left)
+#nest_coords is nest locations - UNTRANSFORMED Y (bottom left is origin)
+#consensus is consensus chick locations - UNTRANSFORMED Y (bottom left is origin)
 #jpeg_dir is jpeg directory
+#output_dir is output directory
 
 
-pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
+pt_img_fun <- function(nest_coords, 
+                       consensus, 
+                       jpeg_dir, 
+                       output_dir, 
+                       dim = c(2048, 1536))
 {
-  poly_fun <- function(KM_REV_ORTHO)
+  # transform y coords
+  trans_fun <- function(INPUT, TYPE = 'COORDS', DIM = dim)
   {
-    #KM_REV_ORTHO <- km_rev_ortho
-    width <- 1000
-    height <- 750
+    #scale factor
+    x_scale <- 2048/1000
+    y_scale <- 1536/750
+    
+    #scale to original image size
+    x_input_sc <- INPUT$x*x_scale
+    y_input_sc <- INPUT$y*y_scale
+    
+    if (TYPE == 'COORDS')
+    {
+      OUTPUT <- data.frame(x = x_input_sc, y = DIM[2] - y_input_sc)
+    }
+    if (TYPE == 'CONSENSUS')
+    {
+      OUTPUT <- data.frame(name = INPUT$name, x = x_input_sc, y = DIM[2] - y_input_sc)
+    }
+    return(OUTPUT)
+  }
+  
+  #polygon function
+  poly_fun <- function(KM_REV_ORTHO, DIM = dim)
+  {
+    width <- DIM[1]
+    height <- DIM[2]
     
     #Voronoi tesselation using specified nest sites - deldir makes tesselation
     vt <- suppressWarnings(deldir(KM_REV_ORTHO[,1], KM_REV_ORTHO[,2], 
@@ -66,10 +93,20 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
     return(polys)
   }
   
-  #nest_coords <- AITCd2014_nc
-  #consensus <- AITCd2014_con
+  #-----------#
+  #test data
+  # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
+  # AITCd2014_nc <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
+  # AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
+  # dim = c(2048, 1536)
+  # nest_coords <- trans_fun(AITCd2014_nc, TYPE = 'COORDS', DIM = dim)
+  # consensus <- trans_fun(AITCd2014_con, TYPE = 'CONSENSUS', DIM = dim)
+  # jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
+  # output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
+  #-----------#
+  
   #determine polygons from nest coordinates
-  polys <- poly_fun(nest_coords)
+  polys <- poly_fun(nest_coords, DIM = dim)
   
   #get jpeg names
   jf <- list.files(path = jpeg_dir)
@@ -103,9 +140,9 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
   #loop to plot camera image with nest 'zones', nest numbers, and consensus chick clicks
   for (i in 1:length(jpeg_files))
   {
-    #i <- 2
+    #i <- 301
     #create jpeg
-    jpeg(filename = paste0(output_dir, jpeg_files[i]), width = 1000, height = 750)
+    jpeg(filename = paste0(output_dir, jpeg_files[i]), width = dim[1], height = dim[2])
     #plot jpeg camera image
     plot_jpeg(paste0(jpeg_dir, jpeg_files[i]))
     
@@ -117,31 +154,22 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
     {
       #j <- 1
       #plot polygons
-      lines(polys[[j]], lwd = 3, col = rgb(1,0,0,0.2))
+      lines(polys[[j]], lwd = 3, col = rgb(1,0,0,0.15))
       #nests numbers on plot
-      text(nest_coords$x[j], nest_coords$y[j], labels = let[j], col = cols[j], cex = 2)
+      #if(i < 5)
+      #{
+        text(nest_coords$x[j], nest_coords$y[j]-10, labels = let[j], col = cols[j], cex = 1.5)
+      #}
     }
     #consensus clicks
-    points(filt_clicks$x, filt_clicks$y, pch = 19, col = 'red', lwd = 4)
+    points(filt_clicks$x, filt_clicks$y, pch = 19, col = rgb(1,0,0,0.2), lwd = 3)
     dev.off()
   }
 }
 
 
 
-# transform y coords
-trans_fun <- function(INPUT, TYPE = 'COORDS')
-{
-  if (TYPE == 'COORDS')
-  {
-    OUTPUT <- data.frame(x = INPUT$x, y = 750 - INPUT$y)
-  }
-  if (TYPE == 'CONSENSUS')
-  {
-    OUTPUT <- data.frame(name = INPUT$name, x = INPUT$x, y = 750 - INPUT$y)
-  }
-  return(OUTPUT)
-}
+
 
 
 
@@ -160,20 +188,34 @@ dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
 
 
+
 # AITCd2014 --------------------------------------------------------------
 
 #NEST COORDINATES
-AITCd2014_nc_IM <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
+AITCd2014_nc <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
 #CONSENSUS CLICKS
-AITCd2014_con_IM <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
-
-#transform y coordinates as image origin is top left, rather than bottom left
-AITCd2014_nc <- trans_fun(AITCd2014_nc_IM, TYPE = 'COORDS')
-AITCd2014_con <- trans_fun(AITCd2014_con_IM, TYPE = 'CONSENSUS')
+AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
 
 # set input/output
-jpeg_dir <- paste0(dir, 'jpeg_cam_images/AITCd2014/')
+jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
 output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
 
 # Run function
-pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir)
+pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir, dim = c(2048, 1536))
+
+
+
+
+# AITCd2014 --------------------------------------------------------------
+
+#NEST COORDINATES
+AITCd2014_nc <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
+#CONSENSUS CLICKS
+AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
+output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
+
+# Run function
+pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir, dim = c(2048, 1536))
