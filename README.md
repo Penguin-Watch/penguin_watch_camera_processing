@@ -1,6 +1,6 @@
 # penguin_watch_camera_processing
 
-Use `Consensus_data/`, `Nest_coords/`, and `Full_res_images/` with `data_plot_script.R` to create `Images_with_polys/`. Use those images to correct `Raw_data_files/` into `QC_data_files/`. `QC_data_files` then combined and included in penguin watch model.
+Use `Consensus_data/`, `Nest_coords/`, and `Full_res_images/` with `data_plot_script.R` to create `Images_with_polys/`. Use those images to correct `Raw_data_files/` into `QC_data_files/`. `QC_data_files/` then combined and included in [penguin watch model](https://github.com/Penguin-Watch/penguin_watch_model).
 
 ## Scripts
 * `/Scripts/data_plot_script.R` - plots nest polygons and chick 'consensus clicks' onto camera images
