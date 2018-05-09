@@ -72,8 +72,9 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
   polys <- poly_fun(nest_coords)
   
   #get jpeg names
-  jpeg_files <- list.files(path = jpeg_dir)
-  
+  jf <- list.files(path = jpeg_dir)
+  jpeg_files <- jf[grep('.JPG', jf)]
+
   #ggplot colors function
   gg_color_hue <- function(n, ALPHA = 1)
   {
@@ -128,6 +129,21 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
 
 
 
+# transform y coords
+trans_fun <- function(INPUT, TYPE = 'COORDS')
+{
+  if (TYPE == 'COORDS')
+  {
+    OUTPUT <- data.frame(x = INPUT$x, y = 750 - INPUT$y)
+  }
+  if (TYPE == 'CONSENSUS')
+  {
+    OUTPUT <- data.frame(name = INPUT$name, x = INPUT$x, y = 750 - INPUT$y)
+  }
+  return(OUTPUT)
+}
+
+
 
 # set user dirs ---------------------------------------------------------------
 
@@ -151,33 +167,13 @@ AITCd2014_nc_IM <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv')
 #CONSENSUS CLICKS
 AITCd2014_con_IM <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
 
-
-# transform y coords
-trans_fun <- function(INPUT, TYPE = 'COORDS')
-{
-  if (TYPE == 'COORDS')
-  {
-    OUTPUT <- data.frame(x = INPUT$x, y = 750 - INPUT$y)
-  }
-  if (TYPE == 'CONSENSUS')
-  {
-    OUTPUT <- data.frame(name = INPUT$name, x = INPUT$x, y = 750 - INPUT$y)
-  }
-  return(OUTPUT)
-}
-
-
 #transform y coordinates as image origin is top left, rather than bottom left
 AITCd2014_nc <- trans_fun(AITCd2014_nc_IM, TYPE = 'COORDS')
 AITCd2014_con <- trans_fun(AITCd2014_con_IM, TYPE = 'CONSENSUS')
 
-
 # set input/output
-
-#IMAGE DIR
 jpeg_dir <- paste0(dir, 'jpeg_cam_images/AITCd2014/')
 output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
 
 # Run function
-
 pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir)
