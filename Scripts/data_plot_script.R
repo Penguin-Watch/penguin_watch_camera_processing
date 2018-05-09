@@ -102,7 +102,7 @@ pt_img_fun <- function(nest_coords,
   # nest_coords <- trans_fun(AITCd2014_nc, TYPE = 'COORDS', DIM = dim)
   # consensus <- trans_fun(AITCd2014_con, TYPE = 'CONSENSUS', DIM = dim)
   # jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
-  # output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
+  # output_dir <- paste0(dir, 'Images_with_polys/AITCd2014/')
   #-----------#
   
   #determine polygons from nest coordinates
@@ -198,7 +198,7 @@ AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
 
 # set input/output
 jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
-output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
+output_dir <- paste0(dir, 'Images_with_polys/AITCd2014/')
 
 # Run function
 pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir, dim = c(2048, 1536))
@@ -215,7 +215,7 @@ AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
 
 # set input/output
 jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
-output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
+output_dir <- paste0(dir, 'Images_with_polys/AITCd2014/')
 
 # Run function
 pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir, dim = c(2048, 1536))
