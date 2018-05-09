@@ -1,6 +1,14 @@
 ######################
 #Script to plot nest numbers, teselation, and chicks consensus on one plot
 #
+#INSTRUCTIONS:
+#STEP 1 - run code to L140
+#STEP 2 - set dir
+#STEP 3 - copy code from previous site run and change object names as needed
+#STEP 4 - create output dir in `images_with_polys/` (specified with `output_dir` object in R)
+#NOTE: make sure dir objects in R end with '/'
+#STEP 5 - run code to specify objects
+#STEP 6 - run function to create images
 #
 ######################
 
@@ -18,7 +26,9 @@ rm(list=ls())
 ##install.packages("tidyr", dependencies = TRUE)
 ##install.packages("jpeg", dependencies = TRUE)
 
-require(dplyr)
+library(SDMTools)
+library(deldir)
+library(dplyr)
 library(jpeg)
 library(stringr)
 
@@ -56,6 +66,8 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
     return(polys)
   }
   
+  #nest_coords <- AITCd2014_nc
+  #consensus <- AITCd2014_con
   #determine polygons from nest coordinates
   polys <- poly_fun(nest_coords)
   
@@ -63,25 +75,10 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
   jpeg_files <- list.files(path = jpeg_dir)
   
   #ggplot colors function
-  gg_color_hue <- function(n, OUT = 'HEX')
+  gg_color_hue <- function(n, ALPHA = 1)
   {
-    #n = 6
     hues = seq(15, 375, length=n+1)
-    tmp <- hcl(h=hues, l=65, c=100)[1:n]
-    gg_cols <- col2rgb(tmp)/255
-    
-    if (OUT == 'HEX')
-    {
-      return(tmp)
-    }
-    if (OUT == 'RGB')
-    {
-      return(gg_cols)
-    }
-    if (OUT != 'HEX' & OUT != 'RGB')
-    {
-      stop('"OUT" argument must be "HEX" or "RGB"')
-    }
+    hcl(h=hues, l=65, c=100, alpha = ALPHA)[1:n]
   }
   
   #plot jpeg function
@@ -97,21 +94,19 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
   }
   
   #determine colors to use (as many as there are nests)
-  cols <- gg_color_hue(NROW(nest_coords))
+  cols <- gg_color_hue(NROW(nest_coords), ALPHA = 0.7)
   
   #vector of numbers to plot for nests
   let <- str_pad(1:99, 2, pad = '0')
   
   #loop to plot camera image with nest 'zones', nest numbers, and consensus chick clicks
-  dir <- substr(jpeg_files[1], start = 1, stop = 10)
-  dir.create(paste0(output_dir, '/', dir))
   for (i in 1:length(jpeg_files))
   {
-    #i <- 1
+    #i <- 2
     #create jpeg
-    jpeg(filename = paste0(output_dir, '/', dir, '/', jpeg_files[i]), width = 1000, height = 750)
+    jpeg(filename = paste0(output_dir, jpeg_files[i]), width = 1000, height = 750)
     #plot jpeg camera image
-    plot_jpeg(paste0(jpeg_dir, '/', jpeg_files[i]))
+    plot_jpeg(paste0(jpeg_dir, jpeg_files[i]))
     
     #filter for consensus clicks from a single image
     jpg_name <- strsplit(jpeg_files[i], split = '.', fixed = TRUE)[[1]][1]
@@ -119,10 +114,11 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
     filt_clicks <- filter(consensus, name == jpg_name)
     for (j in 1:length(polys))
     {
+      #j <- 1
       #plot polygons
-      lines(polys[[j]], lwd = 5)
+      lines(polys[[j]], lwd = 3, col = rgb(1,0,0,0.2))
       #nests numbers on plot
-      text(nest_coords$x[j], nest_coords$y[j], labels = let[j], col = cols[j], lwd = 12)
+      text(nest_coords$x[j], nest_coords$y[j], labels = let[j], col = cols[j], cex = 2)
     }
     #consensus clicks
     points(filt_clicks$x, filt_clicks$y, pch = 19, col = 'red', lwd = 4)
@@ -133,37 +129,55 @@ pt_img_fun <- function(nest_coords, consensus, jpeg_dir, output_dir)
 
 
 
-# Load data ---------------------------------------------------------------
+# set user dirs ---------------------------------------------------------------
 
-#data <- read.csv("C:/Users/lady3793/Dropbox/Penguin_DPhil/Survival_paper/LOCKb2014/LOCKb2014_nestcoords.csv", header = TRUE, sep = ",")
+# Fiona
+#NEST COORDINATES
+#nest_coords_p <- read.csv("C:/Users/lady3793/Dropbox/Penguin_DPhil/Survival_paper/LOCKb2014/LOCKb2014_nestcoords.csv", header = TRUE, sep = ",")
+#CONSENSUS CLICKS
 #data_user <- read.csv("C:/Users/lady3793/Dropbox/Penguin_DPhil/Survival_paper/Filtered_clusters/LOCKb_filtered2.csv", header = TRUE, sep = ",")
 
-dir <- '~/Google_Drive/R/Project_archive/Old_penguin_watch_camera_processing/Scripts/'
+# Casey
+
+dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
+
+
+
+
+# AITCd2014 --------------------------------------------------------------
+
 #NEST COORDINATES
-nest_coords_p <- read.csv(paste0(dir, 'LOCKb2014_nestcoords.csv'))
+AITCd2014_nc_IM <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
 #CONSENSUS CLICKS
-consensus_p <- read.csv(paste0(dir, 'LOCKb2014_data_user.csv'))
-#IMAGE DIR
-path <- paste0(dir, 'LOCKb2014b_jpeg/')
+AITCd2014_con_IM <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
 
 
-
-# transform y coordinates -------------------------------------------------
+# transform y coords
+trans_fun <- function(INPUT, TYPE = 'COORDS')
+{
+  if (TYPE == 'COORDS')
+  {
+    OUTPUT <- data.frame(x = INPUT$x, y = 750 - INPUT$y)
+  }
+  if (TYPE == 'CONSENSUS')
+  {
+    OUTPUT <- data.frame(name = INPUT$name, x = INPUT$x, y = 750 - INPUT$y)
+  }
+  return(OUTPUT)
+}
 
 
 #transform y coordinates as image origin is top left, rather than bottom left
-nest_coords <- data.frame(x = nest_coords_p$x, 
-                          y = 750 - nest_coords_p$y)
-consensus <- data.frame(name = consensus_p$name, 
-                        x = consensus_p$x, 
-                        y = 750 - consensus_p$y)
+AITCd2014_nc <- trans_fun(AITCd2014_nc_IM, TYPE = 'COORDS')
+AITCd2014_con <- trans_fun(AITCd2014_con_IM, TYPE = 'CONSENSUS')
 
 
-# run function ------------------------------------------------------------
+# set input/output
 
-jpeg_dir <- "/Users/caseyyoungflesh/Google_Drive/R/Project_archive/Old_penguin_watch_camera_processing/Scripts/LOCKb2014b_jpeg"
-output_dir <- "/Users/caseyyoungflesh/Google_Drive/R/Project_archive/Old_penguin_watch_camera_processing/Scripts/Output_jpeg/"
+#IMAGE DIR
+jpeg_dir <- paste0(dir, 'jpeg_cam_images/AITCd2014/')
+output_dir <- paste0(dir, 'images_with_polys/AITCd2014/')
 
+# Run function
 
-
-pt_img_fun(nest_coords, consensus, jpeg_dir, output_dir)
+pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir)
