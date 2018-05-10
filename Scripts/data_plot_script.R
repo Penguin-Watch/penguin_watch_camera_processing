@@ -102,6 +102,7 @@ pt_img_fun <- function(nest_coords,
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
   # nest_coords <- read.csv(paste0(dir, 'Nest_coords/BAILa2013_nestcoords.csv'))
   # consensus <- read.csv(paste0(dir, 'Consensus_data/BAILa2013_consensus.csv'))
+  # consensus$name <- paste0('BAILa2013', substring(BAILa2013_con$name, 10, 17))
   # dim = c(2048, 1536)
   # jpeg_dir <- paste0(dir, 'Full_res_images/BAILa2013/')
   # output_dir <- paste0(dir, 'Images_with_polys/BAILa2013/')
@@ -163,7 +164,9 @@ pt_img_fun <- function(nest_coords,
       #nests numbers on plot
       #if(i < 5)
       #{
-        text(NEST_COORDS$x[j], NEST_COORDS$y[j]-10, labels = let[j], col = cols[j], cex = 1.5)
+        text(NEST_COORDS$x[j], NEST_COORDS$y[j]-20, labels = let[j], 
+             col = rgb(1,0,0, 0.8), #cols[j], 
+             cex = 1.5)
       #}
     }
     #consensus clicks
@@ -208,18 +211,22 @@ dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
 # BAILa2013 --------------------------------------------------------------
 
-#NEST COORDINATES
-BAILa2013_nc <- read.csv(paste0(dir, 'Nest_coords/BAILa2013_nestcoords.csv'))
-#CONSENSUS CLICKS
-BAILa2013_con <- read.csv(paste0(dir, 'Consensus_data/BAILa2013_consensus.csv'))
 
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/BAILa2013/')
-output_dir <- paste0(dir, 'Images_with_polys/BAILa2013/')
-
-# Run function
-pt_img_fun(BAILa2013_nc, BAILa2013_con, jpeg_dir, output_dir, 
-           dim = c(2048, 1536), poly_tr = 0.3)
+# #NEST COORDINATES
+# BAILa2013_nc <- read.csv(paste0(dir, 'Nest_coords/BAILa2013_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# BAILa2013_con <- read.csv(paste0(dir, 'Consensus_data/BAILa2013_consensus.csv'))
+# #images names were changed because wrong year was there - changed conensus names bc of this
+# BAILa2013_con$name <- paste0('BAILa2013', substring(BAILa2013_con$name, 10, 17))
+# 
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/BAILa2013/')
+# output_dir <- paste0(dir, 'Images_with_polys/BAILa2013/')
+# 
+# # Run function
+# pt_img_fun(BAILa2013_nc, BAILa2013_con, jpeg_dir, output_dir, 
+#            dim = c(2048, 1536), poly_tr = 0.3)
 
 
 
@@ -260,17 +267,18 @@ pt_img_fun(BAILa2013_nc, BAILa2013_con, jpeg_dir, output_dir,
 
 # GEORa2013 --------------------------------------------------------------
 
-# #NEST COORDINATES
-# GEORa2013_nc <- read.csv(paste0(dir, 'Nest_coords/GEORa2013_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# GEORa2013_con <- read.csv(paste0(dir, 'Consensus_data/GEORa2013_consensus.csv'))
-# 
-# # set input/output
-# jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2013/')
-# output_dir <- paste0(dir, 'Images_with_polys/GEORa2013/')
-# 
-# # Run function
-# pt_img_fun(GEORa2013_nc, GEORa2013_con, jpeg_dir, output_dir, dim = c(2048, 1536))
+#NEST COORDINATES
+GEORa2013_nc <- read.csv(paste0(dir, 'Nest_coords/GEORa2013_nestcoords.csv'))
+#CONSENSUS CLICKS
+GEORa2013_con <- read.csv(paste0(dir, 'Consensus_data/GEORa2013_consensus.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2013/')
+output_dir <- paste0(dir, 'Images_with_polys/GEORa2013/')
+
+# Run function
+pt_img_fun(GEORa2013_nc, GEORa2013_con, jpeg_dir, output_dir, 
+           dim = c(2048, 1536), poly_tr = 0.3)
 
 
 
