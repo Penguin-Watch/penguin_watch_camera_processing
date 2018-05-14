@@ -141,20 +141,20 @@ pt_img_fun <- function(nest_coords,
   
   
   #-----------#
-  #test data
+  # #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
-  # jpeg_dir <- paste0(dir, 'Full_res_images/BOOTb2013/')
-  # output_dir <- paste0(dir, 'Images_with_polys/BOOTb2013/')
-  # BOOTb2013_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/BOOTb2013_V1_nestcoords.csv'))
-  # nest_coords <- BOOTb2013_nc_V1
+  # jpeg_dir <- paste0(dir, 'Full_res_images/ORNEa2014/')
+  # output_dir <- paste0(dir, 'Images_with_polys/ORNEa2014/')
+  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V1_nestcoords.csv'))
   # jpeg_dir = jpeg_dir
   # output_dir = output_dir
-  # dim = c(1920, 1080)
+  # #dim = c(1920, 1080)
+  # dim = c(2048, 1536)
   # poly_tr = 0.6
   # TYPE = 'POLY'
-  # img_st <- 'BOOTb2013a_000052'
-  # img_end <- 'BOOTb2014a_000454'
-  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/BOOTb2013/BOOTb2013a_000056.JPG')
+  # img_st = 'SPIGa2014a_000207'
+  # img_end = 'SPIGa2014b_000163'
+  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/ORNEa2014/SPIGa2014a_000207.JPG')
   # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', DIM = dim)
   # points(NEST_COORDS, col ='red', pch = 19)
   # polys <- poly_fun(NEST_COORDS, DIM = dim)
@@ -479,33 +479,34 @@ pt_img_fun <- function(nest_coords,
 
 # ORNEa2014 --------------------------------------------------------------
 
-#NEST COORDINATES
-ORNEa2014_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V1_nestcoords.csv'))
-ORNEa2014_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V2_nestcoords.csv'))
-#CONSENSUS CLICKS
-#ORNEa2014_con <- read.csv(paste0(dir, 'Consensus_data/ORNEa2014_consensus.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/ORNEa2014/')
-output_dir <- paste0(dir, 'Images_with_polys/ORNEa2014/')
-
-# Run function
-pt_img_fun(nest_coords = ORNEa2014_nc_V1,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'POLY',
-           img_st = 'ORNEa2014a_000207',
-           img_end = 'ORNEa2014b_000163')
-
-pt_img_fun(nest_coords = ORNEa2014_nc_V2,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'POLY',
-           img_st = 'ORNEa2014c_000001',
-           img_end = 'ORNEa2014c_000791')
+# #NEST COORDINATES
+# ORNEa2014_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V1_nestcoords.csv'))
+# ORNEa2014_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V2_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# #ORNEa2014_con <- read.csv(paste0(dir, 'Consensus_data/ORNEa2014_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/ORNEa2014/')
+# output_dir <- paste0(dir, 'Images_with_polys/ORNEa2014/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = ORNEa2014_nc_V1,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            img_st = 'SPIGa2014a_000207',
+#            img_end = 'SPIGa2014b_000163')
+# 
+# 
+# pt_img_fun(nest_coords = ORNEa2014_nc_V2,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            img_st = 'ORNEa2014c_000001',
+#            img_end = 'ORNEa2014c_000450')
 
 
