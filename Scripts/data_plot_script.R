@@ -510,3 +510,38 @@ pt_img_fun <- function(nest_coords,
 #            img_end = 'ORNEa2014c_000450')
 
 
+
+
+# GEORa2015 ---------------------------------------------------------------
+
+
+#NEST COORDINATES
+GEORa2015_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
+GEORa2015_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V2_nestcoords.csv'))
+#CONSENSUS CLICKS
+#ORNEa2014_con <- read.csv(paste0(dir, 'Consensus_data/ORNEa2014_consensus.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
+output_dir <- paste0(dir, 'Images_with_polys/GEORa2015/')
+
+# Run function
+pt_img_fun(nest_coords = GEORa2015_nc_V1,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'POLY',
+           img_st = 'GEORa2015a_000001',
+           img_end = 'GEORa2015a_000624')
+
+
+pt_img_fun(nest_coords = GEORa2015_nc_V2,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'POLY',
+           img_st = 'GEORa2015a_000625',
+           img_end = 'GEORa2015a_1219')
+
