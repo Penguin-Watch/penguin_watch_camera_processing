@@ -45,7 +45,7 @@ library(stringr)
 
 
 
-# function ----------------------------------------------------------------
+# polygon function ----------------------------------------------------------------
 
 
 #nest_coords is nest locations - UNTRANSFORMED Y (bottom left is origin) - always based on 1000 x 750
@@ -55,6 +55,7 @@ library(stringr)
 #dim is camera image dimesions
 #poly_tr is transparency of polygon lines and red dots
 #TYPE is whether to plot 1) JUST POLYGONS or 2) polygons, nest numbers, and consensus clicks ('POLY' or 'BOTH') - POLY does not require consensus clicks, just nest coords
+#NEST_IMG_SZ is whether nest classifications were done on a full or scaled image - see google doc sheet for this information
 
 
 pt_img_fun <- function(nest_coords, 
@@ -64,27 +65,40 @@ pt_img_fun <- function(nest_coords,
                        dim = c(2048, 1536),
                        poly_tr = 0.2,
                        TYPE = 'POLY',
+                       NEST_IMG_SZ = 'PARTIAL',
                        img_st = NULL,
                        img_end = NULL)
 {
   # transform x and y coords
-  trans_fun <- function(INPUT, TYPE = 'COORDS', DIM = dim)
+  trans_fun <- function(INPUT, TYPE = 'COORDS', NEST_IMG_SZ = 'PARTIAL', DIM = dim)
   {
-    #scale factor
-    if (DIM[1] == 2048)
+    if (NEST_IMG_SZ == 'PARTIAL')
     {
-      x_scale <- 2048/1000
-      y_scale <- 1536/750
-    }
-    if (DIM[1] == 1920)
-    {
-      x_scale <- 1920/1000
-      y_scale <- 1080/562.5
-    }
+      #scale factor
+      if (DIM[1] == 2048)
+      {
+        x_scale <- 2048/1000
+        y_scale <- 1536/750
+      }
+      if (DIM[1] == 1920)
+      {
+        x_scale <- 1920/1000
+        y_scale <- 1080/562.5
+      }
     
-    #scale to original image size
-    x_input_sc <- INPUT$x*x_scale
-    y_input_sc <- INPUT$y*y_scale
+      #scale to original image size
+      x_input_sc <- INPUT$x*x_scale
+      y_input_sc <- INPUT$y*y_scale
+    }
+    if (NEST_IMG_SZ == 'FULL')
+    {
+      x_input_sc <- INPUT$x
+      y_input_sc <- INPUT$y
+    }
+    if (NEST_IMG_SZ != 'PARTIAL' & NEST_IMG_SZ != 'FULL')
+    {
+      stop("Invalid arg for 'NEST_IMG_SZ'")
+    }
     
     if (TYPE == 'COORDS')
     {
@@ -224,6 +238,48 @@ pt_img_fun <- function(nest_coords,
       points(filt_clicks$x, filt_clicks$y, pch = 19, col = rgb(1,0,0,poly_tr), lwd = 3)
     }
     dev.off()
+  }
+}
+
+
+
+# reduce polygon image size function ----------------------------------------------------------------
+
+#determine which images are greater than 1MB -> reduce quality of these images to make file smaller (PW Pro will only take images under 1MB)
+#jpeg_dir is directory that jpeg images are in
+
+
+rd_img_fun <- function(jpeg_dir)
+{
+  #jpeg_dir <- '~/Desktop/test/'
+  
+  #list files
+  jf <- list.files(path = jpeg_dir)
+  jpeg_files <- paste0(jpeg_dir, jf[grep('.JPG', jf)])
+  #determine file sizes
+  jpeg_sizes <- file.size(jpeg_files)
+  #larger than 1MB
+  large_files <- jpeg_files[which(jpeg_sizes >= 1000000)]
+  #quality level
+  PER <- 85
+  for (i in 1:length(large_files))
+  {
+    #determine number of characters in filename
+    num_char <- nchar(large_files[i])
+    #imagemagick to reduce file size
+    system(paste0('convert -strip -interlace Plane -sampling-factor 4:2:0 -quality ', PER, '% ', large_files[i], ' ', substring(large_files[i], first = 1, last = num_char-4), '.JPG'))
+  }
+  
+  #recheck file sizes
+  #determine file sizes
+  jpeg_sizes <- file.size(jpeg_files)
+  #larger than 1MB
+  large_files <- jpeg_files[which(jpeg_sizes >= 1000000)]
+  if (length(large_files) < 1)
+  {
+    print('SUCCESS!')
+  } else {
+    print('Looks like there are still some large files!')
   }
 }
 
@@ -375,8 +431,9 @@ pt_img_fun <- function(nest_coords,
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY')
-
-
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
 
 # HALFb2013 --------------------------------------------------------------
@@ -532,6 +589,7 @@ pt_img_fun(nest_coords = GEORa2015_nc_V1,
            dim = c(2048, 1536),
            poly_tr = 0.6,
            TYPE = 'POLY',
+           NEST_IMG_SZ = 'PARTIAL',
            img_st = 'GEORa2015a_000001',
            img_end = 'GEORa2015a_000624')
 
@@ -542,6 +600,12 @@ pt_img_fun(nest_coords = GEORa2015_nc_V2,
            dim = c(2048, 1536),
            poly_tr = 0.6,
            TYPE = 'POLY',
+           NEST_IMG_SZ = 'PARTIAL',
            img_st = 'GEORa2015a_000625',
            img_end = 'GEORa2015a_1219')
 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+output_dir <- '~/Desktop/test/'
+rd_img_fun(output_dir)
