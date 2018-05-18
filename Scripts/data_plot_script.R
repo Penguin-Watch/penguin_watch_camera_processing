@@ -1,7 +1,6 @@
 ######################
-#Script to plot nest numbers, tessellation, and chicks consensus clicks on camera images
+#Script to plot nest numbers, polygons, and chicks consensus clicks on camera images
 #
-#Used for data QC
 #
 #INSTRUCTIONS:
 #STEP 1 - set user dir
@@ -10,6 +9,11 @@
 #- MAKE SURE R OBJECTS END WITH '/'
 #- MAKE SURE DIRECTORIES EXIST (CREATE IF THEY DO NOT)
 #STEP 5 - run function to create images with polygons
+#
+#
+#NOTES:
+#-Imagemagick required
+#-Scripts designed to run on macOS -> calls imagemagick through bash with `system()`
 ######################
 
 
@@ -153,26 +157,26 @@ pt_img_fun <- function(nest_coords,
   }
   
   #-----------#
-  # #test data
+  #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
-  # jpeg_dir <- paste0(dir, 'Full_res_images/ORNEa2014/')
-  # output_dir <- paste0(dir, 'Images_with_polys/ORNEa2014/')
-  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V1_nestcoords.csv'))
+  # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
+  # output_dir <- paste0(dir, 'Images_with_polys/GEORa2015/')
+  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
   # jpeg_dir = jpeg_dir
   # output_dir = output_dir
   # #dim = c(1920, 1080)
   # dim = c(2048, 1536)
   # poly_tr = 0.6
   # TYPE = 'POLY'
-  # img_st = 'SPIGa2014a_000207'
-  # img_end = 'SPIGa2014b_000163'
-  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/ORNEa2014/SPIGa2014a_000207.JPG')
+  # img_st = 'GEORa2015a_000001'
+  # img_end = 'GEORa2015a_000624'
+  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/GEORa2015/GEORa2015a_000197.JPG')
   # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', DIM = dim)
   # points(NEST_COORDS, col ='red', pch = 19)
   # polys <- poly_fun(NEST_COORDS, DIM = dim)
   #-----------#
   
-  NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', DIM = dim)
+  NEST_COORDS <- trans_fun(nest_coords, NEST_IMG_SZ = NEST_IMG_SZ, TYPE = 'COORDS', DIM = dim)
   
   if (TYPE == 'BOTH')
   {
@@ -621,40 +625,38 @@ rd_img_fun <- function(jpeg_dir)
 # GEORa2015 ---------------------------------------------------------------
 
 
-#NEST COORDINATES
-GEORa2015_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
-GEORa2015_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V2_nestcoords.csv'))
-#CONSENSUS CLICKS
-#ORNEa2014_con <- read.csv(paste0(dir, 'Consensus_data/ORNEa2014_consensus.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
-output_dir <- paste0(dir, 'Images_with_polys/GEORa2015/')
-
-# Run function
-pt_img_fun(nest_coords = GEORa2015_nc_V1,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'POLY',
-           NEST_IMG_SZ = 'FULL',
-           img_st = 'GEORa2015a_000001',
-           img_end = 'GEORa2015a_000624')
-
-
-pt_img_fun(nest_coords = GEORa2015_nc_V2,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'POLY',
-           NEST_IMG_SZ = 'FULL',
-           img_st = 'GEORa2015a_000625',
-           img_end = 'GEORa2015a_1219')
-
+# #NEST COORDINATES
+# GEORa2015_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
+# GEORa2015_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V2_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# #ORNEa2014_con <- read.csv(paste0(dir, 'Consensus_data/ORNEa2014_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/GEORa2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = GEORa2015_nc_V1,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2015a_000001',
+#            img_end = 'GEORa2015a_000624')
+# 
+# 
+# pt_img_fun(nest_coords = GEORa2015_nc_V2,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2015a_000625',
+#            img_end = 'GEORa2015a_001219')
+# 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
-output_dir <- '~/Desktop/test/'
-rd_img_fun(output_dir)
