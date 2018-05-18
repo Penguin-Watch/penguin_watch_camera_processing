@@ -152,8 +152,6 @@ pt_img_fun <- function(nest_coords,
     hcl(h=hues, l=65, c=100, alpha = ALPHA)[1:n]
   }
   
-  
-  
   #-----------#
   # #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
@@ -252,6 +250,8 @@ pt_img_fun <- function(nest_coords,
 rd_img_fun <- function(jpeg_dir)
 {
   #jpeg_dir <- '~/Desktop/test/'
+  #change permissions
+  system(paste0('chmod -R 755 ', jpeg_dir))
   
   #list files
   jf <- list.files(path = jpeg_dir)
@@ -260,14 +260,19 @@ rd_img_fun <- function(jpeg_dir)
   jpeg_sizes <- file.size(jpeg_files)
   #larger than 1MB
   large_files <- jpeg_files[which(jpeg_sizes >= 1000000)]
-  #quality level
-  PER <- 85
-  for (i in 1:length(large_files))
+  
+  if (length(large_files) > 0)
   {
-    #determine number of characters in filename
-    num_char <- nchar(large_files[i])
-    #imagemagick to reduce file size
-    system(paste0('convert -strip -interlace Plane -sampling-factor 4:2:0 -quality ', PER, '% ', large_files[i], ' ', substring(large_files[i], first = 1, last = num_char-4), '.JPG'))
+    #quality level
+    PER <- 85
+    for (i in 1:length(large_files))
+    {
+      #determine number of characters in filename
+      num_char <- nchar(large_files[i])
+      #imagemagick to reduce file size
+      system(paste0('convert -strip -interlace Plane -sampling-factor 4:2:0 -quality ', 
+                    PER, '% ', large_files[i], ' ', substring(large_files[i], first = 1, last = num_char-4), '.JPG'))
+    }
   }
   
   #recheck file sizes
@@ -279,8 +284,32 @@ rd_img_fun <- function(jpeg_dir)
   {
     print('SUCCESS!')
   } else {
-    print('Looks like there are still some large files!')
+    print('Looks like there are still some large files! Running through again.')
+  
+    PER <- 75
+    for (i in 1:length(large_files))
+    {
+      #determine number of characters in filename
+      num_char <- nchar(large_files[i])
+      #imagemagick to reduce file size
+      system(paste0('convert -strip -interlace Plane -sampling-factor 4:2:0 -quality ', PER, '% ', large_files[i], ' ', substring(large_files[i], first = 1, last = num_char-4), '.JPG'))
+    }
+  
+    #recheck file sizes
+    #determine file sizes
+    jpeg_sizes <- file.size(jpeg_files)
+    #larger than 1MB
+    large_files <- jpeg_files[which(jpeg_sizes >= 1000000)]
+    if (length(large_files) < 1)
+    {
+      print('SUCCESS!')
+    } else {
+      print('Looks like there are still some large files! Running through again.')
+    }
   }
+  
+  #change permissions back
+  system(paste0('chmod -R 555 ', jpeg_dir))
 }
 
 
@@ -321,12 +350,16 @@ rd_img_fun <- function(jpeg_dir)
 # output_dir <- paste0(dir, 'Images_with_polys/BAILa2013/')
 # 
 # # Run function
-# pt_img_fun(nest_coords = BAILa2013_nc, 
-#            jpeg_dir = jpeg_dir, 
+# pt_img_fun(nest_coords = BAILa2013_nc,
+#            jpeg_dir = jpeg_dir,
 #            output_dir = output_dir,
-#            dim = c(2048, 1536), 
-#            poly_tr = 0.6, 
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
 #            TYPE = 'POLY')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
 
 
 # BAILa2014 --------------------------------------------------------------
@@ -347,7 +380,9 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY')
-
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
 
 
@@ -391,7 +426,9 @@ rd_img_fun <- function(jpeg_dir)
 #            TYPE = 'POLY',
 #            img_st = 'BOOTb2014a_000607',
 #            img_end = 'BOOTb2014a_001080')
-
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
 
 
@@ -454,7 +491,9 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY')
-
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
 
 
@@ -488,6 +527,10 @@ rd_img_fun <- function(jpeg_dir)
 #            TYPE = 'POLY',
 #            img_st = 'LOCKb2013b_000389',
 #            img_end = 'LOCKb2013b_000770')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
 
 
 # LOCKb2014 --------------------------------------------------------------
@@ -508,7 +551,9 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY')
-
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
 
 
@@ -530,7 +575,9 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY')
-
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
 
 
@@ -565,7 +612,9 @@ rd_img_fun <- function(jpeg_dir)
 #            TYPE = 'POLY',
 #            img_st = 'ORNEa2014c_000001',
 #            img_end = 'ORNEa2014c_000450')
-
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
 
 
@@ -589,7 +638,7 @@ pt_img_fun(nest_coords = GEORa2015_nc_V1,
            dim = c(2048, 1536),
            poly_tr = 0.6,
            TYPE = 'POLY',
-           NEST_IMG_SZ = 'PARTIAL',
+           NEST_IMG_SZ = 'FULL',
            img_st = 'GEORa2015a_000001',
            img_end = 'GEORa2015a_000624')
 
@@ -600,7 +649,7 @@ pt_img_fun(nest_coords = GEORa2015_nc_V2,
            dim = c(2048, 1536),
            poly_tr = 0.6,
            TYPE = 'POLY',
-           NEST_IMG_SZ = 'PARTIAL',
+           NEST_IMG_SZ = 'FULL',
            img_st = 'GEORa2015a_000625',
            img_end = 'GEORa2015a_1219')
 
