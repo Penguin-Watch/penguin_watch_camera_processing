@@ -73,6 +73,9 @@ pt_img_fun <- function(nest_coords,
                        img_st = NULL,
                        img_end = NULL)
 {
+  #change permissions
+  system(paste0('chmod -R 755 ', output_dir))
+  
   # transform x and y coords
   trans_fun <- function(INPUT, TYPE = 'COORDS', NEST_IMG_SZ = 'PARTIAL', DIM = dim)
   {
@@ -157,11 +160,11 @@ pt_img_fun <- function(nest_coords,
   }
   
   #-----------#
-  #test data
+  # #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
-  # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
-  # output_dir <- paste0(dir, 'Images_with_polys/GEORa2015/')
-  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
+  # jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2013/')
+  # output_dir <- paste0(dir, 'Images_with_polys/DANCb2013/')
+  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/DANCb2013_nestcoords.csv'))
   # jpeg_dir = jpeg_dir
   # output_dir = output_dir
   # #dim = c(1920, 1080)
@@ -170,8 +173,8 @@ pt_img_fun <- function(nest_coords,
   # TYPE = 'POLY'
   # img_st = 'GEORa2015a_000001'
   # img_end = 'GEORa2015a_000624'
-  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/GEORa2015/GEORa2015a_000197.JPG')
-  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', DIM = dim)
+  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/DANCb2013/DANCb2013a_000002.JPG')
+  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'FULL', DIM = dim)
   # points(NEST_COORDS, col ='red', pch = 19)
   # polys <- poly_fun(NEST_COORDS, DIM = dim)
   #-----------#
@@ -241,6 +244,8 @@ pt_img_fun <- function(nest_coords,
     }
     dev.off()
   }
+  #change permissions back
+  system(paste0('chmod -R 555 ', output_dir))
 }
 
 
@@ -520,6 +525,7 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(1920, 1080),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'PARTIAL',
 #            img_st = 'LOCKb2013b_000241',
 #            img_end = 'LOCKb2013b_000388')
 # 
@@ -529,6 +535,7 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(1920, 1080),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'PARTIAL',
 #            img_st = 'LOCKb2013b_000389',
 #            img_end = 'LOCKb2013b_000770')
 # 
@@ -660,3 +667,107 @@ rd_img_fun <- function(jpeg_dir)
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
+
+
+
+# CUVEb2014 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# CUVEb2014_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# #CUVEb2014_con <- read.csv(paste0(dir, 'Consensus_data/CUVEb2014_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
+# output_dir <- paste0(dir, 'Images_with_polys/CUVEb2014/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = CUVEb2014_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+# DAMOa2014 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# DAMOa2014_nc <- read.csv(paste0(dir, 'Nest_coords/DAMOa2014_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# #DAMOa2014_con <- read.csv(paste0(dir, 'Consensus_data/DAMOa2014_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/DAMOa2014/')
+# output_dir <- paste0(dir, 'Images_with_polys/DAMOa2014/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = DAMOa2014_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+# DANCb2013 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# DANCb2013_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2013_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# #DANCb2013_con <- read.csv(paste0(dir, 'Consensus_data/DANCb2013_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2013/')
+# output_dir <- paste0(dir, 'Images_with_polys/DANCb2013/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = DANCb2013_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+# DANCb2014 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# DANCb2014_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2014_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# #DANCb2014_con <- read.csv(paste0(dir, 'Consensus_data/DANCb2014_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2014/')
+# output_dir <- paste0(dir, 'Images_with_polys/DANCb2014/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = DANCb2014_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
