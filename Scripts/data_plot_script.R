@@ -17,6 +17,7 @@
 ######################
 
 
+
 # Setup -------------------------------------------------------------------
 
 rm(list=ls())
@@ -59,7 +60,8 @@ library(stringr)
 #dim is camera image dimesions
 #poly_tr is transparency of polygon lines and red dots
 #TYPE is whether to plot 1) JUST POLYGONS or 2) polygons, nest numbers, and consensus clicks ('POLY' or 'BOTH') - POLY does not require consensus clicks, just nest coords
-#NEST_IMG_SZ is whether nest classifications were done on a full or scaled image - see google doc sheet for this information
+#NEST_IMG_SZ is whether nest classifications were done on a full or scaled image - see google doc sheet for this information - PARITAL or FULL
+#keep is whether to process all images or half the images - 'all' or 'half
 
 
 pt_img_fun <- function(nest_coords, 
@@ -71,7 +73,8 @@ pt_img_fun <- function(nest_coords,
                        TYPE = 'POLY',
                        NEST_IMG_SZ = 'PARTIAL',
                        img_st = NULL,
-                       img_end = NULL)
+                       img_end = NULL,
+                       keep = 'half')
 {
   #change permissions
   system(paste0('chmod -R 755 ', output_dir))
@@ -191,7 +194,21 @@ pt_img_fun <- function(nest_coords,
   
   #get jpeg names
   jf <- list.files(path = jpeg_dir)
-  jpeg_files <- jf[grep('.JPG', jf)]
+  jpeg_files_p <- jf[grep('.JPG', jf)]
+  
+  if (keep == 'half')
+  {
+    td <- seq(1, length(jpeg_files_p), 2)
+    jpeg_files <- jpeg_files_p[-td]
+  }
+  if (keep == 'all')
+  {
+    jpeg_files <- jpeg_files_p
+  }
+  if (keep != 'half' & keep != 'all')
+  {
+    stop('valid args for keep are "half" and "all"')
+  }
   
   #determine colors to use (as many as there are nests)
   cols <- gg_color_hue(NROW(NEST_COORDS), ALPHA = 0.7)
@@ -476,7 +493,8 @@ rd_img_fun <- function(jpeg_dir)
 #            output_dir = output_dir,
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
-#            TYPE = 'POLY')
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'PARTIAL')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -561,7 +579,9 @@ rd_img_fun <- function(jpeg_dir)
 #            output_dir = output_dir,
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
-#            TYPE = 'POLY')
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'half')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -585,7 +605,9 @@ rd_img_fun <- function(jpeg_dir)
 #            output_dir = output_dir,
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
-#            TYPE = 'POLY')
+#            TYPE = 'POLY',
+#            keep = 'half',
+#            NEST_IMG_SZ = 'PARTIAL')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -651,7 +673,8 @@ rd_img_fun <- function(jpeg_dir)
 #            TYPE = 'POLY',
 #            NEST_IMG_SZ = 'FULL',
 #            img_st = 'GEORa2015a_000001',
-#            img_end = 'GEORa2015a_000624')
+#            img_end = 'GEORa2015a_000624',
+#            keep = 'half')
 # 
 # 
 # pt_img_fun(nest_coords = GEORa2015_nc_V2,
@@ -662,7 +685,8 @@ rd_img_fun <- function(jpeg_dir)
 #            TYPE = 'POLY',
 #            NEST_IMG_SZ = 'FULL',
 #            img_st = 'GEORa2015a_000625',
-#            img_end = 'GEORa2015a_001219')
+#            img_end = 'GEORa2015a_001219',
+#            keep = 'half')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -715,7 +739,8 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
-#            NEST_IMG_SZ = 'FULL')
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -741,7 +766,8 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
-#            NEST_IMG_SZ = 'FULL')
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -767,7 +793,8 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
-#            NEST_IMG_SZ = 'FULL')
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
