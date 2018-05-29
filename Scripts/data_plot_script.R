@@ -353,8 +353,15 @@ rd_img_fun <- function(jpeg_dir)
 # output_dir <- paste0(dir, 'Images_with_polys/AITCd2014/')
 # 
 # # Run function
-# pt_img_fun(AITCd2014_nc, AITCd2014_con, jpeg_dir, output_dir, 
-#            dim = c(2048, 1536), TYPE = 'BOTH')
+# pt_img_fun(nest_coords = AITCd2014_nc, 
+#            consensus = AITCd2014_con, 
+#            jpeg_dir = jpeg_dir, 
+#            output_dir = output_dir,
+#            dim = c(2048, 1536), 
+#            TYPE = 'BOTH',
+#            poly_tr = 0.6,
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'all')
 
 
 
@@ -381,7 +388,8 @@ rd_img_fun <- function(jpeg_dir)
 #            output_dir = output_dir,
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
-#            TYPE = 'POLY')
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'PARTIAL')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -405,7 +413,8 @@ rd_img_fun <- function(jpeg_dir)
 #            output_dir = output_dir,
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
-#            TYPE = 'POLY')
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'PARTIAL')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -433,7 +442,9 @@ rd_img_fun <- function(jpeg_dir)
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
 #            img_st = 'BOOTb2013a_000052',
-#            img_end = 'BOOTb2014a_000454')
+#            img_end = 'BOOTb2014a_000454',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'half')
 # 
 # pt_img_fun(nest_coords = BOOTb2013_nc_V2,
 #            jpeg_dir = jpeg_dir,
@@ -442,7 +453,9 @@ rd_img_fun <- function(jpeg_dir)
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
 #            img_st = 'BOOTb2014a_000455',
-#            img_end = 'BOOTb2014a_000606')
+#            img_end = 'BOOTb2014a_000606',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'half')
 # 
 # pt_img_fun(nest_coords = BOOTb2013_nc_V3,
 #            jpeg_dir = jpeg_dir,
@@ -451,7 +464,9 @@ rd_img_fun <- function(jpeg_dir)
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
 #            img_st = 'BOOTb2014a_000607',
-#            img_end = 'BOOTb2014a_001080')
+#            img_end = 'BOOTb2014a_001080',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'half')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -470,8 +485,15 @@ rd_img_fun <- function(jpeg_dir)
 # output_dir <- paste0(dir, 'Images_with_polys/GEORa2013/')
 # 
 # # Run function
-# pt_img_fun(GEORa2013_nc, GEORa2013_con, jpeg_dir, output_dir, 
-#            dim = c(2048, 1536), poly_tr = 0.3, TYPE = 'BOTH')
+# pt_img_fun(nest_coords = GEORa2013_nc, 
+#            consensus = GEORa2013_con, 
+#            jpeg_dir = jpeg_dir, 
+#            output_dir = output_dir,
+#            dim = c(2048, 1536), 
+#            poly_tr = 0.3, 
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'all')
 
 
 
@@ -494,7 +516,8 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
-#            NEST_IMG_SZ = 'PARTIAL')
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'all')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -517,7 +540,9 @@ rd_img_fun <- function(jpeg_dir)
 #            output_dir = output_dir,
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
-#            TYPE = 'POLY')
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'all')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -545,7 +570,8 @@ rd_img_fun <- function(jpeg_dir)
 #            TYPE = 'POLY',
 #            NEST_IMG_SZ = 'PARTIAL',
 #            img_st = 'LOCKb2013b_000241',
-#            img_end = 'LOCKb2013b_000388')
+#            img_end = 'LOCKb2013b_000388',
+#            keep = 'all')
 # 
 # pt_img_fun(nest_coords = LOCKb2013_nc_V2,
 #            jpeg_dir = jpeg_dir,
@@ -555,7 +581,8 @@ rd_img_fun <- function(jpeg_dir)
 #            TYPE = 'POLY',
 #            NEST_IMG_SZ = 'PARTIAL',
 #            img_st = 'LOCKb2013b_000389',
-#            img_end = 'LOCKb2013b_000770')
+#            img_end = 'LOCKb2013b_000770',
+#            keep = 'all')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -634,7 +661,9 @@ rd_img_fun <- function(jpeg_dir)
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
 #            img_st = 'SPIGa2014a_000207',
-#            img_end = 'SPIGa2014b_000163')
+#            img_end = 'SPIGa2014b_000163',
+#            keep = 'all',
+#            NEST_IMG_SZ = 'PARTIAL')
 # 
 # 
 # pt_img_fun(nest_coords = ORNEa2014_nc_V2,
@@ -644,7 +673,9 @@ rd_img_fun <- function(jpeg_dir)
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
 #            img_st = 'ORNEa2014c_000001',
-#            img_end = 'ORNEa2014c_000450')
+#            img_end = 'ORNEa2014c_000450',
+#            keep = 'all',
+#            NEST_IMG_SZ = 'PARTIAL')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
@@ -713,7 +744,8 @@ rd_img_fun <- function(jpeg_dir)
 #            dim = c(2048, 1536),
 #            poly_tr = 0.6,
 #            TYPE = 'POLY',
-#            NEST_IMG_SZ = 'FULL')
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'all')
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
