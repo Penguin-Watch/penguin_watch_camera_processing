@@ -165,21 +165,27 @@ pt_img_fun <- function(nest_coords,
   #-----------#
   # #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
-  # jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2013/')
-  # output_dir <- paste0(dir, 'Images_with_polys/DANCb2013/')
-  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/DANCb2013_nestcoords.csv'))
+  # jpeg_dir <- paste0(dir, 'Full_res_images/NEKOc2013/')
+  # output_dir <- paste0(dir, 'Images_with_polys/NEKOc2013/')
+  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/NEKOc2013_nestcoords.csv'))
   # jpeg_dir = jpeg_dir
   # output_dir = output_dir
   # #dim = c(1920, 1080)
   # dim = c(2048, 1536)
   # poly_tr = 0.6
   # TYPE = 'POLY'
-  # img_st = 'GEORa2015a_000001'
+  # img_st = 'NEKOc2013c_000468'
   # img_end = 'GEORa2015a_000624'
-  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/DANCb2013/DANCb2013a_000002.JPG')
-  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'FULL', DIM = dim)
-  # points(NEST_COORDS, col ='red', pch = 19)
+  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/NEKOc2013/NEKOc2013c_000468.JPG')
+  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'PARTIAL', DIM = dim)
+  # #points(NEST_COORDS, col = rgb(1,0,0,0.8), pch = 19)
   # polys <- poly_fun(NEST_COORDS, DIM = dim)
+  # for (j in 1:length(polys))
+  # {
+  #   #j <- 1
+  #   #plot polygons
+  #   lines(polys[[j]], lwd = 3, col = rgb(0,0,1,poly_tr))
+  # }
   #-----------#
   
   NEST_COORDS <- trans_fun(nest_coords, NEST_IMG_SZ = NEST_IMG_SZ, TYPE = 'COORDS', DIM = dim)
