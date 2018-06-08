@@ -74,7 +74,7 @@ pt_img_fun <- function(nest_coords,
                        NEST_IMG_SZ = 'PARTIAL',
                        img_st = NULL,
                        img_end = NULL,
-                       keep = 'half')
+                       keep = 'all')
 {
   #change permissions
   system(paste0('chmod -R 755 ', output_dir))
@@ -165,34 +165,37 @@ pt_img_fun <- function(nest_coords,
   #-----------#
   # #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
-  # jpeg_dir <- paste0(dir, 'Full_res_images/NEKOc2013/')
-  # output_dir <- paste0(dir, 'Images_with_polys/NEKOc2013/')
-  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/NEKOc2013_nestcoords.csv'))
+  # jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
+  # output_dir <- paste0(dir, 'QC_images/CUVEb2014/')
+  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
+  # consensus <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
   # jpeg_dir = jpeg_dir
   # output_dir = output_dir
   # #dim = c(1920, 1080)
   # dim = c(2048, 1536)
   # poly_tr = 0.6
-  # TYPE = 'POLY'
-  # img_st = 'NEKOc2013c_000468'
-  # img_end = 'GEORa2015a_000624'
-  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/NEKOc2013/NEKOc2013c_000468.JPG')
-  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'PARTIAL', DIM = dim)
+  # TYPE = 'BOTH'
+  # #img_st = 'NEKOc2013c_000468'
+  # #img_end = 'GEORa2015a_000624'
+  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/CUVEb2014/CUVEb2014a_000509.JPG')
+  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'FULL', DIM = dim)
+  # CONSENSUS <- trans_fun(consensus, TYPE = 'CONSENSUS', NEST_IMG_SZ = 'FULL', DIM = dim)
   # #points(NEST_COORDS, col = rgb(1,0,0,0.8), pch = 19)
   # polys <- poly_fun(NEST_COORDS, DIM = dim)
   # for (j in 1:length(polys))
   # {
   #   #j <- 1
   #   #plot polygons
-  #   lines(polys[[j]], lwd = 3, col = rgb(0,0,1,poly_tr))
+  #   lines(polys[[j]], lwd = 3, col = rgb(1,0,0,poly_tr))
   # }
+  # points(CONSENSUS$x, CONSENSUS$y, col = rgb(0,1,0,0.8), pch = '.')
   #-----------#
   
   NEST_COORDS <- trans_fun(nest_coords, NEST_IMG_SZ = NEST_IMG_SZ, TYPE = 'COORDS', DIM = dim)
   
   if (TYPE == 'BOTH')
   {
-    CONSENSUS <- trans_fun(consensus, TYPE = 'CONSENSUS', DIM = dim)
+    CONSENSUS <- trans_fun(consensus, TYPE = 'CONSENSUS', NEST_IMG_SZ = NEST_IMG_SZ, DIM = dim)
   }
   
   #determine polygons from nest coordinates
@@ -211,6 +214,11 @@ pt_img_fun <- function(nest_coords,
   {
     jpeg_files <- jpeg_files_p
   }
+  # if (keep == 'match')
+  # {
+  #   jpeg_files_p[which(jpeg_files_p %in% paste0(as.character(CONSENSUS$name), '.JPG'))]
+  # 
+  # }
   if (keep != 'half' & keep != 'all')
   {
     stop('valid args for keep are "half" and "all"')
@@ -256,14 +264,14 @@ pt_img_fun <- function(nest_coords,
       if (TYPE == 'BOTH')
       {
         text(NEST_COORDS$x[j], NEST_COORDS$y[j]-20, labels = let[j], 
-             col = rgb(1,0,0, 0.8), #cols[j], 
-             cex = 1.5)
+             col = rgb(0,1,0, 0.8), #cols[j], 
+             cex = 3)
       }
     }
     if (TYPE == 'BOTH')
     {
       #consensus clicks
-      points(filt_clicks$x, filt_clicks$y, pch = 19, col = rgb(1,0,0,poly_tr), lwd = 3)
+      points(filt_clicks$x, filt_clicks$y, pch = 19, col = rgb(1,0,0,poly_tr), cex = 2.5)
     }
     dev.off()
   }
@@ -736,8 +744,6 @@ rd_img_fun <- function(jpeg_dir)
 
 # #NEST COORDINATES
 # CUVEb2014_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #CUVEb2014_con <- read.csv(paste0(dir, 'Consensus_data/CUVEb2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
@@ -755,6 +761,29 @@ rd_img_fun <- function(jpeg_dir)
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
+
+
+#BOTH
+#NEST COORDINATES
+CUVEb2014_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
+
+#PW PRO CLICKS
+CUVEb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
+output_dir <- paste0(dir, 'QC_images/CUVEb2014/')
+
+# Run function
+pt_img_fun(nest_coords = CUVEb2014_nc,
+           consensus = CUVEb2014_con,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'BOTH',
+           NEST_IMG_SZ = 'FULL',
+           keep = 'all')
 
 
 
@@ -782,6 +811,29 @@ rd_img_fun <- function(jpeg_dir)
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
+
+
+#BOTH
+#NEST COORDINATES
+DAMOa2014_nc <- read.csv(paste0(dir, 'Nest_coords/DAMOa2014_nestcoords.csv'))
+
+#PW PRO CLICKS
+DAMOa2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/DAMOa2014_classifications.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/DAMOa2014/')
+output_dir <- paste0(dir, 'QC_images/DAMOa2014/')
+
+# Run function
+pt_img_fun(nest_coords = DAMOa2014_nc,
+           consensus = DAMOa2014_con,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'BOTH',
+           NEST_IMG_SZ = 'FULL',
+           keep = 'all')
 
 
 
@@ -836,3 +888,34 @@ rd_img_fun <- function(jpeg_dir)
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
+
+
+
+
+# CUVEb2015 ---------------------------------------------------------------
+
+#deleted everything before CUVEb2015a_000372 as there was significant cam movement
+
+# #NEST COORDINATES
+# CUVEb2015_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2015_nestcoords.csv'))
+# #CONSENSUS CLICKS
+# #CUVEb2015_con <- read.csv(paste0(dir, 'Consensus_data/CUVEb2015_consensus.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/CUVEb2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = CUVEb2015_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
