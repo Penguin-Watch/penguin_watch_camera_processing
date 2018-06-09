@@ -195,7 +195,7 @@ pt_img_fun <- function(nest_coords,
   
   if (TYPE == 'BOTH')
   {
-    CONSENSUS <- trans_fun(consensus, TYPE = 'CONSENSUS', NEST_IMG_SZ = NEST_IMG_SZ, DIM = dim)
+    CONSENSUS <- trans_fun(consensus, TYPE = 'CONSENSUS', NEST_IMG_SZ = 'FULL', DIM = dim)
   }
   
   #determine polygons from nest coordinates
@@ -627,42 +627,42 @@ rd_img_fun <- function(jpeg_dir)
 
 
 
-#BOTH
-#NEST COORDINATES
-LOCKb2013_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/LOCKb2013_V1_nestcoords.csv'))
-LOCKb2013_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/LOCKb2013_V2_nestcoords.csv'))
-
-#PW PRO CLICKS
-LOCKb2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/LOCKb2013_classifications.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2013/')
-output_dir <- paste0(dir, 'QC_images/LOCKb2013/')
-
-# Run function
-pt_img_fun(nest_coords = LOCKb2013_nc_V1,
-           consensus = LOCKb2013_con,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(1920, 1080),
-           poly_tr = 0.6,
-           TYPE = 'BOTH',
-           NEST_IMG_SZ = 'PARTIAL',
-           img_st = 'LOCKb2013b_000241',
-           img_end = 'LOCKb2013b_000388',
-           keep = 'all')
-
-pt_img_fun(nest_coords = LOCKb2013_nc_V2,
-           consensus = LOCKb2013_con,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(1920, 1080),
-           poly_tr = 0.6,
-           TYPE = 'BOTH',
-           NEST_IMG_SZ = 'PARTIAL',
-           img_st = 'LOCKb2013b_000389',
-           img_end = 'LOCKb2013b_000770',
-           keep = 'all')
+# #BOTH
+# #NEST COORDINATES
+# LOCKb2013_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/LOCKb2013_V1_nestcoords.csv'))
+# LOCKb2013_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/LOCKb2013_V2_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# LOCKb2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/LOCKb2013_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2013/')
+# output_dir <- paste0(dir, 'QC_images/LOCKb2013/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = LOCKb2013_nc_V1,
+#            consensus = LOCKb2013_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            img_st = 'LOCKb2013b_000241',
+#            img_end = 'LOCKb2013b_000388',
+#            keep = 'all')
+# 
+# pt_img_fun(nest_coords = LOCKb2013_nc_V2,
+#            consensus = LOCKb2013_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            img_st = 'LOCKb2013b_000389',
+#            img_end = 'LOCKb2013b_000770',
+#            keep = 'all')
 
 
 
@@ -696,27 +696,27 @@ pt_img_fun(nest_coords = LOCKb2013_nc_V2,
 
 
 
-#BOTH
-#NEST COORDINATES
-LOCKb2014_nc <- read.csv(paste0(dir, 'Nest_coords/LOCKb2014_nestcoords.csv'))
-
-#PW PRO CLICKS
-LOCKb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/LOCKb2014_classifications.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2014/')
-output_dir <- paste0(dir, 'QC_images/LOCKb2014/')
-
-# Run function
-pt_img_fun(nest_coords = LOCKb2014_nc,
-           consensus = LOCKb2014_con,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'BOTH',
-           NEST_IMG_SZ = 'PARTIAL',
-           keep = 'all')
+# #BOTH
+# #NEST COORDINATES
+# LOCKb2014_nc <- read.csv(paste0(dir, 'Nest_coords/LOCKb2014_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# LOCKb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/LOCKb2014_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2014/')
+# output_dir <- paste0(dir, 'QC_images/LOCKb2014/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = LOCKb2014_nc,
+#            consensus = LOCKb2014_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'all')
 
 
 
