@@ -166,7 +166,7 @@ pt_img_fun <- function(nest_coords,
   # #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
   # jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
-  # output_dir <- paste0(dir, 'QC_images/CUVEb2014/')
+  # output_dir <- paste0(dir, 'QC_images/test/')
   # nest_coords <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
   # consensus <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
   # jpeg_dir = jpeg_dir
@@ -214,11 +214,7 @@ pt_img_fun <- function(nest_coords,
   {
     jpeg_files <- jpeg_files_p
   }
-  # if (keep == 'match')
-  # {
-  #   jpeg_files_p[which(jpeg_files_p %in% paste0(as.character(CONSENSUS$name), '.JPG'))]
-  # 
-  # }
+  
   if (keep != 'half' & keep != 'all')
   {
     stop('valid args for keep are "half" and "all"')
@@ -245,8 +241,18 @@ pt_img_fun <- function(nest_coords,
     #i <- 301
     #create jpeg
     jpeg(filename = paste0(output_dir, jpeg_files_list[i]), width = dim[1], height = dim[2])
-    #plot jpeg camera image
-    plot_jpeg(paste0(jpeg_dir, jpeg_files_list[i]))
+    
+    if (TYPE != 'BOTH')
+    {
+      #plot jpeg camera image
+      plot_jpeg(paste0(jpeg_dir, jpeg_files_list[i]))
+    } else {
+      system(paste0('convert ',  jpeg_dir, jpeg_files_list[i], 
+                    ' -set colorspace Gray -separate -average ', jpeg_dir, jpeg_files_list[i], 'tmp'))
+      
+      plot_jpeg(paste0(jpeg_dir, jpeg_files_list[i], 'tmp'))
+      system(paste0('rm ', jpeg_dir, jpeg_files_list[i], 'tmp'))
+    }
     
     #filter for consensus clicks from a single image
     jpg_name <- strsplit(jpeg_files_list[i], split = '.', fixed = TRUE)[[1]][1]
@@ -258,11 +264,15 @@ pt_img_fun <- function(nest_coords,
     for (j in 1:length(polys))
     {
       #j <- 1
+      if (TYPE != 'BOTH')
+      {
       #plot polygons
       lines(polys[[j]], lwd = 3, col = rgb(1,0,0,poly_tr))
+      }
       #nests numbers on plot
       if (TYPE == 'BOTH')
       {
+        lines(polys[[j]], lwd = 3, col = rgb(0,0,1,poly_tr))
         text(NEST_COORDS$x[j], NEST_COORDS$y[j]-20, labels = let[j], 
              col = rgb(0,1,0, 0.8), #cols[j], 
              cex = 3)
@@ -855,27 +865,28 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
-# #BOTH
-# #NEST COORDINATES
-# CUVEb2014_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
-# 
-# #PW PRO CLICKS
-# CUVEb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
-# 
-# # set input/output
-# jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
-# output_dir <- paste0(dir, 'QC_images/CUVEb2014/')
-# 
-# # Run function
-# pt_img_fun(nest_coords = CUVEb2014_nc,
-#            consensus = CUVEb2014_con,
-#            jpeg_dir = jpeg_dir,
-#            output_dir = output_dir,
-#            dim = c(2048, 1536),
-#            poly_tr = 0.6,
-#            TYPE = 'BOTH',
-#            NEST_IMG_SZ = 'FULL',
-#            keep = 'all')
+#BOTH
+#NEST COORDINATES
+CUVEb2014_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
+
+#PW PRO CLICKS
+CUVEb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
+output_dir <- paste0(dir, 'QC_images/CUVEb2014/')
+
+
+# Run function
+pt_img_fun(nest_coords = CUVEb2014_nc,
+           consensus = CUVEb2014_con,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'BOTH',
+           NEST_IMG_SZ = 'FULL',
+           keep = 'all')
 
 
 
