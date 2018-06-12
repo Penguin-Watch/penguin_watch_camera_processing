@@ -370,7 +370,7 @@ rd_img_fun <- function(jpeg_dir)
 # #NEST COORDINATES
 # AITCd2014_nc <- read.csv(paste0(dir, 'Nest_coords/AITCd2014a_nestcoords.csv'))
 # #CONSENSUS CLICKS
-# AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/AITCd2014_consensus.csv'))
+# AITCd2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_clicks/AITCd2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
@@ -396,11 +396,6 @@ rd_img_fun <- function(jpeg_dir)
 
 # #NEST COORDINATES
 # BAILa2013_nc <- read.csv(paste0(dir, 'Nest_coords/BAILa2013_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #BAILa2013_con <- read.csv(paste0(dir, 'Consensus_data/BAILa2013_consensus.csv'))
-# #images names were changed because wrong year was there - changed conensus names bc of this
-# #BAILa2013_con$name <- paste0('BAILa2013', substring(BAILa2013_con$name, 10, 17))
-# 
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/BAILa2013/')
@@ -424,8 +419,6 @@ rd_img_fun <- function(jpeg_dir)
 
 # #NEST COORDINATES
 # BAILa2014_nc <- read.csv(paste0(dir, 'Nest_coords/BAILa2014_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #BAILa2014_con <- read.csv(paste0(dir, 'Consensus_data/BAILa2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/BAILa2014/')
@@ -451,8 +444,6 @@ rd_img_fun <- function(jpeg_dir)
 # BOOTb2013_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/BOOTb2013_V1_nestcoords.csv'))
 # BOOTb2013_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/BOOTb2013_V2_nestcoords.csv'))
 # BOOTb2013_nc_V3 <- read.csv(paste0(dir, 'Nest_coords/BOOTb2013_V3_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #BOOTb2013_con <- read.csv(paste0(dir, 'Consensus_data/BOOTb2013_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/BOOTb2013/')
@@ -502,7 +493,7 @@ rd_img_fun <- function(jpeg_dir)
 # #NEST COORDINATES
 # GEORa2013_nc <- read.csv(paste0(dir, 'Nest_coords/GEORa2013_nestcoords.csv'))
 # #CONSENSUS CLICKS
-# GEORa2013_con <- read.csv(paste0(dir, 'Consensus_data/GEORa2013_consensus.csv'))
+# GEORa2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_clicks/GEORa2013_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2013/')
@@ -526,8 +517,6 @@ rd_img_fun <- function(jpeg_dir)
 
 # #NEST COORDINATES
 # GEORa2014_nc <- read.csv(paste0(dir, 'Nest_coords/GEORa2014_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #GEORa2014_con <- read.csv(paste0(dir, 'Consensus_data/GEORa2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2014/')
@@ -575,8 +564,6 @@ rd_img_fun <- function(jpeg_dir)
 
 # #NEST COORDINATES
 # HALFb2013_nc <- read.csv(paste0(dir, 'Nest_coords/HALFb2013_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #HALFb2013_con <- read.csv(paste0(dir, 'Consensus_data/HALFb2013_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/HALFb2013/')
@@ -602,8 +589,6 @@ rd_img_fun <- function(jpeg_dir)
 # #NEST COORDINATES
 # LOCKb2013_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/LOCKb2013_V1_nestcoords.csv'))
 # LOCKb2013_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/LOCKb2013_V2_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #LOCKb2013_con <- read.csv(paste0(dir, 'Consensus_data/LOCKb2013_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2013/')
@@ -684,8 +669,6 @@ rd_img_fun <- function(jpeg_dir)
 
 # #NEST COORDINATES
 # LOCKb2014_nc <- read.csv(paste0(dir, 'Nest_coords/LOCKb2014_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #LOCKb2014_con <- read.csv(paste0(dir, 'Consensus_data/LOCKb2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2014/')
@@ -735,8 +718,6 @@ rd_img_fun <- function(jpeg_dir)
 
 # #NEST COORDINATES
 # NEKOc2013_nc <- read.csv(paste0(dir, 'Nest_coords/NEKOc2013_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #NEKOc2013_con <- read.csv(paste0(dir, 'Consensus_data/NEKOc2013_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/NEKOc2013/')
@@ -762,8 +743,6 @@ rd_img_fun <- function(jpeg_dir)
 # #NEST COORDINATES
 # ORNEa2014_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V1_nestcoords.csv'))
 # ORNEa2014_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/ORNEa2014_V2_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #ORNEa2014_con <- read.csv(paste0(dir, 'Consensus_data/ORNEa2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/ORNEa2014/')
@@ -804,8 +783,6 @@ rd_img_fun <- function(jpeg_dir)
 # #NEST COORDINATES
 # GEORa2015_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
 # GEORa2015_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V2_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #ORNEa2014_con <- read.csv(paste0(dir, 'Consensus_data/ORNEa2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
@@ -839,6 +816,44 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+#BOTH
+#NEST COORDINATES
+GEORa2015_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
+GEORa2015_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V2_nestcoords.csv'))
+
+#PW PRO CLICKS
+GEORa2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/GEORa2015_classifications.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
+output_dir <- paste0(dir, 'QC_images/GEORa2015/')
+
+
+# Run function
+pt_img_fun(nest_coords = GEORa2015_nc_V1,
+           consensus = GEORa2015_con,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'BOTH',
+           NEST_IMG_SZ = 'FULL',
+           img_st = 'GEORa2015a_000001',
+           img_end = 'GEORa2015a_000624',
+           keep = 'all')
+
+pt_img_fun(nest_coords = GEORa2015_nc_V2,
+           consensus = GEORa2015_con,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'BOTH',
+           NEST_IMG_SZ = 'FULL',
+           img_st = 'GEORa2015a_000625',
+           img_end = 'GEORa2015a_001219',
+           keep = 'all')
+
 
 
 # CUVEb2014 ---------------------------------------------------------------
@@ -865,28 +880,28 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
-#BOTH
-#NEST COORDINATES
-CUVEb2014_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
-
-#PW PRO CLICKS
-CUVEb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
-output_dir <- paste0(dir, 'QC_images/CUVEb2014/')
-
-
-# Run function
-pt_img_fun(nest_coords = CUVEb2014_nc,
-           consensus = CUVEb2014_con,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'BOTH',
-           NEST_IMG_SZ = 'FULL',
-           keep = 'all')
+# #BOTH
+# #NEST COORDINATES
+# CUVEb2014_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2014a_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# CUVEb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
+# output_dir <- paste0(dir, 'QC_images/CUVEb2014/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = CUVEb2014_nc,
+#            consensus = CUVEb2014_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'all')
 
 
 
@@ -895,8 +910,6 @@ pt_img_fun(nest_coords = CUVEb2014_nc,
 
 # #NEST COORDINATES
 # DAMOa2014_nc <- read.csv(paste0(dir, 'Nest_coords/DAMOa2014_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #DAMOa2014_con <- read.csv(paste0(dir, 'Consensus_data/DAMOa2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/DAMOa2014/')
@@ -945,8 +958,6 @@ pt_img_fun(nest_coords = CUVEb2014_nc,
 
 # #NEST COORDINATES
 # DANCb2013_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2013_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #DANCb2013_con <- read.csv(paste0(dir, 'Consensus_data/DANCb2013_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2013/')
@@ -972,8 +983,6 @@ pt_img_fun(nest_coords = CUVEb2014_nc,
 
 # #NEST COORDINATES
 # DANCb2014_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2014_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #DANCb2014_con <- read.csv(paste0(dir, 'Consensus_data/DANCb2014_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2014/')
@@ -1001,8 +1010,6 @@ pt_img_fun(nest_coords = CUVEb2014_nc,
 
 # #NEST COORDINATES
 # CUVEb2015_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2015_nestcoords.csv'))
-# #CONSENSUS CLICKS
-# #CUVEb2015_con <- read.csv(paste0(dir, 'Consensus_data/CUVEb2015_consensus.csv'))
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2015/')
