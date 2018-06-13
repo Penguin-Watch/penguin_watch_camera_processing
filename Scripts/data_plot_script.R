@@ -1,14 +1,24 @@
 ######################
-#Script to plot nest numbers, polygons, and chicks consensus clicks on camera images
+#Script to plot nest numbers, polygons, and clicks on camera images
 #
 #
-#INSTRUCTIONS:
+#INSTRUCTIONS FOR POLYGON IMAGES:
 #STEP 1 - set user dir
-#STEP 2 - read in consensus data and nest coordinates
+#STEP 2 - read in nest coordinate data
 #STEP 3 - specify input and output dir
 #- MAKE SURE R OBJECTS END WITH '/'
 #- MAKE SURE DIRECTORIES EXIST (CREATE IF THEY DO NOT)
-#STEP 5 - run function to create images with polygons
+#STEP 5 - run function with `TYPE = 'POLY'` to create images with polygons
+#
+#
+#INSTRUCTIONS FOR QC IMAGES (black and white images, with polygons, nest numbers, and clicks):
+#STEP 1 - set user dir
+#STEP 2 - read in nest coordinate data
+#STEP 3 - read in click data
+#STEP 3 - specify input and output dir
+#- MAKE SURE R OBJECTS END WITH '/'
+#- MAKE SURE DIRECTORIES EXIST (CREATE IF THEY DO NOT)
+#STEP 5 - run function with `TYPE = 'BOTH'` to create QC images
 #
 #
 #NOTES:
@@ -374,14 +384,14 @@ rd_img_fun <- function(jpeg_dir)
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/AITCd2014/')
-# output_dir <- paste0(dir, 'Images_with_polys/AITCd2014/')
+# output_dir <- paste0(dir, 'QC_images/AITCd2014/')
 # 
 # # Run function
-# pt_img_fun(nest_coords = AITCd2014_nc, 
-#            consensus = AITCd2014_con, 
-#            jpeg_dir = jpeg_dir, 
+# pt_img_fun(nest_coords = AITCd2014_nc,
+#            consensus = AITCd2014_con,
+#            jpeg_dir = jpeg_dir,
 #            output_dir = output_dir,
-#            dim = c(2048, 1536), 
+#            dim = c(2048, 1536),
 #            TYPE = 'BOTH',
 #            poly_tr = 0.6,
 #            NEST_IMG_SZ = 'PARTIAL',
@@ -497,15 +507,15 @@ rd_img_fun <- function(jpeg_dir)
 # 
 # # set input/output
 # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2013/')
-# output_dir <- paste0(dir, 'Images_with_polys/GEORa2013/')
+# output_dir <- paste0(dir, 'QC_images/GEORa2013/')
 # 
 # # Run function
-# pt_img_fun(nest_coords = GEORa2013_nc, 
-#            consensus = GEORa2013_con, 
-#            jpeg_dir = jpeg_dir, 
+# pt_img_fun(nest_coords = GEORa2013_nc,
+#            consensus = GEORa2013_con,
+#            jpeg_dir = jpeg_dir,
 #            output_dir = output_dir,
-#            dim = c(2048, 1536), 
-#            poly_tr = 0.3, 
+#            dim = c(2048, 1536),
+#            poly_tr = 0.3,
 #            TYPE = 'BOTH',
 #            NEST_IMG_SZ = 'PARTIAL',
 #            keep = 'all')
@@ -816,43 +826,43 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
-#BOTH
-#NEST COORDINATES
-GEORa2015_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
-GEORa2015_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V2_nestcoords.csv'))
-
-#PW PRO CLICKS
-GEORa2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/GEORa2015_classifications.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
-output_dir <- paste0(dir, 'QC_images/GEORa2015/')
-
-
-# Run function
-pt_img_fun(nest_coords = GEORa2015_nc_V1,
-           consensus = GEORa2015_con,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'BOTH',
-           NEST_IMG_SZ = 'FULL',
-           img_st = 'GEORa2015a_000001',
-           img_end = 'GEORa2015a_000624',
-           keep = 'all')
-
-pt_img_fun(nest_coords = GEORa2015_nc_V2,
-           consensus = GEORa2015_con,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'BOTH',
-           NEST_IMG_SZ = 'FULL',
-           img_st = 'GEORa2015a_000625',
-           img_end = 'GEORa2015a_001219',
-           keep = 'all')
+# #BOTH
+# #NEST COORDINATES
+# GEORa2015_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V1_nestcoords.csv'))
+# GEORa2015_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2015_V2_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# GEORa2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/GEORa2015_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2015/')
+# output_dir <- paste0(dir, 'QC_images/GEORa2015/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = GEORa2015_nc_V1,
+#            consensus = GEORa2015_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2015a_000001',
+#            img_end = 'GEORa2015a_000624',
+#            keep = 'all')
+# 
+# pt_img_fun(nest_coords = GEORa2015_nc_V2,
+#            consensus = GEORa2015_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2015a_000625',
+#            img_end = 'GEORa2015a_001219',
+#            keep = 'all')
 
 
 
