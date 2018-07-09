@@ -1064,3 +1064,26 @@ rd_img_fun <- function(jpeg_dir)
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
+
+# MAIVc2013 ---------------------------------------------------------------
+
+
+#NEST COORDINATES
+MAIVc2013_nc <- read.csv(paste0(dir, 'Nest_coords/MAIVc2013_nestcoords.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/MAIVc2013/')
+output_dir <- paste0(dir, 'Images_with_polys/MAIVc2013/')
+
+# Run function
+pt_img_fun(nest_coords = MAIVc2013_nc,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(1920, 1080),
+           poly_tr = 0.6,
+           TYPE = 'POLY',
+           NEST_IMG_SZ = 'FULL',
+           keep = 'half')
+
+#reduce size of large images for PW Pro
+rd_img_fun(output_dir)
