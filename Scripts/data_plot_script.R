@@ -40,9 +40,9 @@ rm(list=ls())
 #dir <- ''
 
 # Casey
-dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
+#dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
-
+dir <- 'C:/Users/Lynch Lab 7/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
 # Load packages -----------------------------------------------------------
 
@@ -1040,4 +1040,27 @@ rd_img_fun <- function(jpeg_dir)
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
+
+# MAIVb2013 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# MAIVb2013_nc <- read.csv(paste0(dir, 'Nest_coords/MAIVb2013a_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/MAIVb2013/')
+# output_dir <- paste0(dir, 'Images_with_polys/MAIVb2013/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = MAIVb2013_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
