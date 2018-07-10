@@ -173,22 +173,22 @@ pt_img_fun <- function(nest_coords,
   }
   
   #-----------#
-  #test data
+  # #test data
   # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
-  # jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2014/')
+  # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2017')
   # output_dir <- paste0(dir, 'QC_images/test/')
-  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/NEKOc2013_nestcoords.csv'))
+  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V1_nestcoords.csv'))
   # consensus <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
   # jpeg_dir = jpeg_dir
   # output_dir = output_dir
   # #dim = c(1920, 1080)
   # dim = c(2048, 1536)
   # poly_tr = 0.6
-  # TYPE = 'BOTH'
-  # #img_st = 'NEKOc2013c_000468'
-  # #img_end = 'GEORa2015a_000624'
+  # TYPE = ''
+  # img_st = 'GEORa2017a_000341'
+  # img_end = 'GEORa2017a_000700'
   # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/NEKOc2013/NEKOc2013c_000468.JPG')
-  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'PARTIAL', DIM = dim)
+  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'FULL', DIM = dim)
   # CONSENSUS <- trans_fun(consensus, TYPE = 'CONSENSUS', NEST_IMG_SZ = 'FULL', DIM = dim)
   # #points(NEST_COORDS, col = rgb(1,0,0,0.8), pch = 19)
   # polys <- poly_fun(NEST_COORDS, DIM = dim)
@@ -199,6 +199,24 @@ pt_img_fun <- function(nest_coords,
   #   lines(polys[[j]], lwd = 4, col = rgb(0,1,0,poly_tr))
   # }
   # points(CONSENSUS$x, CONSENSUS$y, col = rgb(0,1,0,0.8), pch = '.')
+  # GEORa2017_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V1_nestcoords.csv'))
+  # GEORa2017_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V2_nestcoords.csv'))
+  # 
+  # # set input/output
+  # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2017/')
+  # output_dir <- paste0(dir, 'Images_with_polys/GEORa2017/')
+  # 
+  # # Run function - start end must be even numbers (if starting image is even) if keeping half
+  # nest_coords = GEORa2017_nc_V1
+  #            jpeg_dir = jpeg_dir
+  #            output_dir = output_dir
+  #            dim = c(2048, 1536)
+  #            poly_tr = 0.6
+  #            TYPE = 'POLY'
+  #            NEST_IMG_SZ = 'FULL'
+  #            img_st = 'GEORa2017a_000180.JPG'
+  #            img_end = 'GEORa2017a_000340.JPG'
+  #            keep = 'half'
   #-----------#
   
   NEST_COORDS <- trans_fun(nest_coords, NEST_IMG_SZ = NEST_IMG_SZ, TYPE = 'COORDS', DIM = dim)
@@ -220,12 +238,17 @@ pt_img_fun <- function(nest_coords,
     td <- seq(1, length(jpeg_files_p), 2)
     jpeg_files <- jpeg_files_p[-td]
   }
+  if (keep == 'quarter')
+  {
+    td <- seq(1, length(jpeg_files_p), 4)
+    jpeg_files <- jpeg_files_p[-td]
+  }
   if (keep == 'all')
   {
     jpeg_files <- jpeg_files_p
   }
   
-  if (keep != 'half' & keep != 'all')
+  if (keep != 'half' & keep != 'quarter' & keep != 'all')
   {
     stop('valid args for keep are "half" and "all"')
   }
@@ -1068,22 +1091,85 @@ rd_img_fun <- function(jpeg_dir)
 # MAIVc2013 ---------------------------------------------------------------
 
 
+# #NEST COORDINATES
+# MAIVc2013_nc <- read.csv(paste0(dir, 'Nest_coords/MAIVc2013_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/MAIVc2013/')
+# output_dir <- paste0(dir, 'Images_with_polys/MAIVc2013/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = MAIVc2013_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+# GEORa2017 ---------------------------------------------------------------
+
+# #NEST COORDINATES
+# GEORa2017_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V1_nestcoords.csv'))
+# GEORa2017_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V2_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2017/')
+# output_dir <- paste0(dir, 'Images_with_polys/GEORa2017/')
+# 
+# # Run function - start end must be odd numbers (if starting image is even) if keeping half
+# pt_img_fun(nest_coords = GEORa2017_nc_V1,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2017a_000181.JPG',
+#            img_end = 'GEORa2017a_000341.JPG',
+#            keep = 'half')
+# 
+# pt_img_fun(nest_coords = GEORa2017_nc_V2,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2017a_000343',
+#            img_end = 'GEORa2017a_000699',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+# LOCKb2015 ---------------------------------------------------------------
+
+
 #NEST COORDINATES
-MAIVc2013_nc <- read.csv(paste0(dir, 'Nest_coords/MAIVc2013_nestcoords.csv'))
+LOCKb2015_nc <- read.csv(paste0(dir, 'Nest_coords/LOCKb2015a_nestcoords.csv'))
 
 # set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/MAIVc2013/')
-output_dir <- paste0(dir, 'Images_with_polys/MAIVc2013/')
+jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2015/')
+output_dir <- paste0(dir, 'Images_with_polys/LOCKb2015/')
 
 # Run function
-pt_img_fun(nest_coords = MAIVc2013_nc,
+pt_img_fun(nest_coords = LOCKb2015_nc,
            jpeg_dir = jpeg_dir,
            output_dir = output_dir,
-           dim = c(1920, 1080),
+           dim = c(2048, 1536),
            poly_tr = 0.6,
            TYPE = 'POLY',
            NEST_IMG_SZ = 'FULL',
-           keep = 'half')
+           keep = 'quarter')
 
 #reduce size of large images for PW Pro
 rd_img_fun(output_dir)
