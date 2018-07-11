@@ -236,12 +236,12 @@ pt_img_fun <- function(nest_coords,
   if (keep == 'half')
   {
     td <- seq(1, length(jpeg_files_p), 2)
-    jpeg_files <- jpeg_files_p[-td]
+    jpeg_files <- jpeg_files_p[td]
   }
   if (keep == 'quarter')
   {
     td <- seq(1, length(jpeg_files_p), 4)
-    jpeg_files <- jpeg_files_p[-td]
+    jpeg_files <- jpeg_files_p[td]
   }
   if (keep == 'all')
   {
