@@ -1154,22 +1154,159 @@ rd_img_fun <- function(jpeg_dir)
 # LOCKb2015 ---------------------------------------------------------------
 
 
-#NEST COORDINATES
-LOCKb2015_nc <- read.csv(paste0(dir, 'Nest_coords/LOCKb2015a_nestcoords.csv'))
+# #NEST COORDINATES
+# LOCKb2015_nc <- read.csv(paste0(dir, 'Nest_coords/LOCKb2015a_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/LOCKb2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = LOCKb2015_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'quarter')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/LOCKb2015/')
-output_dir <- paste0(dir, 'Images_with_polys/LOCKb2015/')
 
-# Run function
-pt_img_fun(nest_coords = LOCKb2015_nc,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.6,
-           TYPE = 'POLY',
-           NEST_IMG_SZ = 'FULL',
-           keep = 'quarter')
 
-#reduce size of large images for PW Pro
-rd_img_fun(output_dir)
+# AITCb2015 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# AITCb2015_nc <- read.csv(paste0(dir, 'Nest_coords/AITCb2015_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/AITCb2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/AITCb2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = AITCb2015_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+# DANCb2015 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# DANCb2015_v1_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2015_V1_nestcoords.csv'))
+# DANCb2015_v2_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2015_V2_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/DANCb2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = DANCb2015_v1_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'DANCb2015a_000001.JPG',
+#            img_end = 'DANCb2015a_000551.JPG',
+#            keep = 'half')
+# 
+# pt_img_fun(nest_coords = DANCb2015_v2_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'DANCb2015b_000001.JPG',
+#            img_end = 'DANCb2015b_000209.JPG',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+# NEKOc2014 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# NEKOc2014_nc <- read.csv(paste0(dir, 'Nest_coords/NEKOc2014_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/NEKOc2014/')
+# output_dir <- paste0(dir, 'Images_with_polys/NEKOc2014/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = NEKOc2014_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+# NEKOc2015 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# NEKOc2015_nc <- read.csv(paste0(dir, 'Nest_coords/NEKOc2015_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/NEKOc2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/NEKOc2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = NEKOc2015_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+# NEKOc2016 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# NEKOc2016_nc <- read.csv(paste0(dir, 'Nest_coords/NEKOc2016_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/NEKOc2016/')
+# output_dir <- paste0(dir, 'Images_with_polys/NEKOc2016/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = NEKOc2016_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
