@@ -40,9 +40,9 @@ rm(list=ls())
 #dir <- ''
 
 # Casey
-#dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
+dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
-dir <- 'C:/Users/Lynch Lab 7/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
+#dir <- 'C:/Users/Lynch Lab 7/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
 # Load packages -----------------------------------------------------------
 
@@ -72,7 +72,7 @@ library(stringr)
 #TYPE is whether to plot 1) JUST POLYGONS or 2) polygons, nest numbers, and consensus clicks ('POLY' or 'BOTH') - POLY does not require consensus clicks, just nest coords
 #NEST_IMG_SZ is whether nest classifications were done on a full or scaled image - see google doc sheet for this information - PARITAL or FULL
 #keep is whether to process all images or half the images - 'all' or 'half
-
+#keep_oe is to keep odd or even images (with the first image being 1, not the actual image number) with keep = 'half' - SHOULD BE CHECKED TO MAKE SURE IT PROCESSES CORRECTLY - images processed earlier in time used 'even' (though this option wasn't yet available) - images processed later in time used 'odd' to accomodate keeping a quarter rather than a half - this option applies both to the polygon image plotting and both polygons and consensus clicks
 
 pt_img_fun <- function(nest_coords, 
                        consensus, 
@@ -84,7 +84,8 @@ pt_img_fun <- function(nest_coords,
                        NEST_IMG_SZ = 'PARTIAL',
                        img_st = NULL,
                        img_end = NULL,
-                       keep = 'all')
+                       keep = 'all',
+                       keep_oe = 'odd')
 {
   #change permissions
   system(paste0('chmod -R 755 ', output_dir))
@@ -236,7 +237,15 @@ pt_img_fun <- function(nest_coords,
   if (keep == 'half')
   {
     td <- seq(1, length(jpeg_files_p), 2)
-    jpeg_files <- jpeg_files_p[td]
+    
+    if (keep_oe == 'odd')
+    {
+      jpeg_files <- jpeg_files_p[td]
+    }
+    if (keep_oe == 'even')
+    {
+      jpeg_files <- jpeg_files_p[-td]
+    }
   }
   if (keep == 'quarter')
   {
@@ -772,6 +781,31 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# NEKOc2013_nc <- read.csv(paste0(dir, 'Nest_coords/NEKOc2013_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# NEKOc2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/NEKOc2013_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/NEKOc2013/')
+# output_dir <- paste0(dir, 'QC_images/NEKOc2013/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = NEKOc2013_nc,
+#            consensus = NEKOc2013_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'PARTIAL',
+#            keep = 'half',
+#            keep_oe = 'even')
+
+
 
 # ORNEa2014 --------------------------------------------------------------
 
@@ -1012,6 +1046,31 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# DANCb2013_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2013_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# DANCb2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/DANCb2013_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2013/')
+# output_dir <- paste0(dir, 'QC_images/DANCb2013/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = DANCb2013_nc,
+#            consensus = DANCb2013_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half',
+#            keep_oe = 'even')
+
+
 
 # DANCb2014 ---------------------------------------------------------------
 
@@ -1036,6 +1095,30 @@ rd_img_fun <- function(jpeg_dir)
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
+
+# #BOTH
+# #NEST COORDINATES
+# DANCb2014_nc <- read.csv(paste0(dir, 'Nest_coords/DANCb2014_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# DANCb2014_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/DANCb2014_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/DANCb2014/')
+# output_dir <- paste0(dir, 'QC_images/DANCb2014/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = DANCb2014_nc,
+#            consensus = DANCb2014_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half',
+#            keep_oe = 'even')
 
 
 
@@ -1064,6 +1147,32 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# CUVEb2015_nc <- read.csv(paste0(dir, 'Nest_coords/CUVEb2015_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# CUVEb2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2015_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/CUVEb2015/')
+# output_dir <- paste0(dir, 'QC_images/CUVEb2015/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = CUVEb2015_nc,
+#            consensus = CUVEb2015_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half',
+#            keep_oe = 'even')
+
+
+
 # MAIVb2013 ---------------------------------------------------------------
 
 
@@ -1086,6 +1195,31 @@ rd_img_fun <- function(jpeg_dir)
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
+
+
+# #BOTH
+# #NEST COORDINATES
+# MAIVb2013_nc <- read.csv(paste0(dir, 'Nest_coords/MAIVb2013a_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# MAIVb2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/MAIVb2013_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/MAIVb2013/')
+# output_dir <- paste0(dir, 'QC_images/MAIVb2013/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = MAIVb2013_nc,
+#            consensus = MAIVb2013_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half',
+#            keep_oe = 'even')
 
 
 # MAIVc2013 ---------------------------------------------------------------
