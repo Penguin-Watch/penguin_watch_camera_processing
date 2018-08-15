@@ -1444,3 +1444,102 @@ rd_img_fun <- function(jpeg_dir)
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
+
+
+# BEAVa2016 ---------------------------------------------------------------
+
+
+# #NEST COORDINATES
+# BEAVa2016_nc <- read.csv(paste0(dir, 'Nest_coords/BEAVa2016_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/BEAVa2016/')
+# output_dir <- paste0(dir, 'Images_with_polys/BEAVa2016/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = BEAVa2016_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+# COOPa2015 ---------------------------------------------------------------
+
+# #NEST COORDINATES
+# COOPa2015_nc <- read.csv(paste0(dir, 'Nest_coords/COOPa2015_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/COOPa2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/COOPa2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = COOPa2015_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+
+
+# COOPx2017 ---------------------------------------------------------------
+
+# #NEST COORDINATES
+# COOPx2017_nc <- read.csv(paste0(dir, 'Nest_coords/COOPx2017a_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/COOPx2017/')
+# output_dir <- paste0(dir, 'Images_with_polys/COOPx2017/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = COOPx2017_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
+
+
+
+
+# OCEAa2015 ---------------------------------------------------------------
+
+# #NEST COORDINATES
+# OCEAa2015_nc <- read.csv(paste0(dir, 'Nest_coords/OCEAa2015_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/OCEAa2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/OCEAa2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = OCEAa2015_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.9,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
