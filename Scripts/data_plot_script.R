@@ -40,9 +40,9 @@ rm(list=ls())
 #dir <- ''
 
 # Casey
-#dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
+dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
-dir <- 'C:/Users/Lynch Lab 7/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
+#dir <- 'C:/Users/Lynch Lab 7/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 
 # Load packages -----------------------------------------------------------
 
@@ -1617,22 +1617,22 @@ rd_img_fun <- function(jpeg_dir)
 
 # BLUFb2016 ---------------------------------------------------------------
 
-#NEST COORDINATES
-BLUFb2016_nc <- read.csv(paste0(dir, 'Nest_coords/BLUFb2016_nestcoords.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/BLUFb2016/')
-output_dir <- paste0(dir, 'Images_with_polys/BLUFb2016/')
-
-# Run function
-pt_img_fun(nest_coords = BLUFb2016_nc,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.9,
-           TYPE = 'POLY',
-           NEST_IMG_SZ = 'FULL',
-           keep = 'half')
-
-#reduce size of large images for PW Pro
-rd_img_fun(output_dir)
+# #NEST COORDINATES
+# BLUFb2016_nc <- read.csv(paste0(dir, 'Nest_coords/BLUFb2016_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/BLUFb2016/')
+# output_dir <- paste0(dir, 'Images_with_polys/BLUFb2016/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = BLUFb2016_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.9,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
