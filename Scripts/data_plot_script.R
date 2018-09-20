@@ -1284,6 +1284,46 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# GEORa2017_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V1_nestcoords.csv'))
+# GEORa2017_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V2_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# GEORa2017_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/GEORa2017_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2017/')
+# output_dir <- paste0(dir, 'QC_images/GEORa2017/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = GEORa2017_nc_V1,
+#            consensus = GEORa2017_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2017a_000181.JPG',
+#            img_end = 'GEORa2017a_000341.JPG',
+#            keep = 'half',
+#            keep_oe = 'even')
+# 
+# pt_img_fun(nest_coords = GEORa2017_nc_V2,
+#            consensus = GEORa2017_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'GEORa2017a_000343',
+#            img_end = 'GEORa2017a_000699',
+#            keep = 'half',
+#            keep_oe = 'even')
+
 
 # LOCKb2015 ---------------------------------------------------------------
 
@@ -1493,7 +1533,29 @@ rd_img_fun <- function(jpeg_dir)
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
-
+# #BOTH
+# #NEST COORDINATES
+# COOPa2015_nc <- read.csv(paste0(dir, 'Nest_coords/COOPa2015_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# COOPa2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/COOPa2015_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/COOPa2015/')
+# output_dir <- paste0(dir, 'QC_images/COOPa2015/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = COOPa2015_nc,
+#            consensus = COOPa2015_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half',
+#            keep_oe = 'odd')
 
 
 
