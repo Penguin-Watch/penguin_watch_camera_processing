@@ -1246,29 +1246,29 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
-#BOTH
-#NEST COORDINATES
-MAIVc2013_nc <- read.csv(paste0(dir, 'Nest_coords/MAIVc2013_nestcoords.csv'))
-
-#PW PRO CLICKS
-MAIVc2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/MAIVc2013_classifications.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/MAIVc2013/')
-output_dir <- paste0(dir, 'QC_images/MAIVc2013/')
-
-
-# Run function
-pt_img_fun(nest_coords = MAIVc2013_nc,
-           consensus = MAIVc2013_con,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(1920, 1080),
-           poly_tr = 0.6,
-           TYPE = 'BOTH',
-           NEST_IMG_SZ = 'FULL',
-           keep = 'half',
-           keep_oe = 'even')
+# #BOTH
+# #NEST COORDINATES
+# MAIVc2013_nc <- read.csv(paste0(dir, 'Nest_coords/MAIVc2013_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# MAIVc2013_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/MAIVc2013_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/MAIVc2013/')
+# output_dir <- paste0(dir, 'QC_images/MAIVc2013/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = MAIVc2013_nc,
+#            consensus = MAIVc2013_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half',
+#            keep_oe = 'even')
 
 
 # GEORa2017 ---------------------------------------------------------------
@@ -1584,29 +1584,29 @@ pt_img_fun(nest_coords = MAIVc2013_nc,
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
-# #BOTH
-# #NEST COORDINATES
-# COOPa2015_nc <- read.csv(paste0(dir, 'Nest_coords/COOPa2015_nestcoords.csv'))
-# 
-# #PW PRO CLICKS
-# COOPa2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/COOPa2015_classifications.csv'))
-# 
-# # set input/output
-# jpeg_dir <- paste0(dir, 'Full_res_images/COOPa2015/')
-# output_dir <- paste0(dir, 'QC_images/COOPa2015/')
-# 
-# 
-# # Run function
-# pt_img_fun(nest_coords = COOPa2015_nc,
-#            consensus = COOPa2015_con,
-#            jpeg_dir = jpeg_dir,
-#            output_dir = output_dir,
-#            dim = c(2048, 1536),
-#            poly_tr = 0.6,
-#            TYPE = 'BOTH',
-#            NEST_IMG_SZ = 'FULL',
-#            keep = 'half',
-#            keep_oe = 'odd')
+#BOTH
+#NEST COORDINATES
+COOPa2015_nc <- read.csv(paste0(dir, 'Nest_coords/COOPa2015_nestcoords.csv'))
+
+#PW PRO CLICKS
+COOPa2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/COOPa2015_classifications.csv'))
+
+# set input/output
+jpeg_dir <- paste0(dir, 'Full_res_images/COOPa2015/')
+output_dir <- paste0(dir, 'QC_images/COOPa2015/')
+
+
+# Run function
+pt_img_fun(nest_coords = COOPa2015_nc,
+           consensus = COOPa2015_con,
+           jpeg_dir = jpeg_dir,
+           output_dir = output_dir,
+           dim = c(2048, 1536),
+           poly_tr = 0.6,
+           TYPE = 'BOTH',
+           NEST_IMG_SZ = 'FULL',
+           keep = 'half',
+           keep_oe = 'odd')
 
 
 
