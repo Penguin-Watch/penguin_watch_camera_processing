@@ -1936,6 +1936,31 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# GODHb2018_nc <- read.csv(paste0(dir, 'Nest_coords/GODHb2018_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# GODHb2018_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/GODHb2018_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/GODHb2018/')
+# output_dir <- paste0(dir, 'QC_images/GODHb2018/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = GODHb2018_nc,
+#            consensus = GODHb2018_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+
+
+
 # # JOUGa2017 ---------------------------------------------------------------
 # 
 # #NEST COORDINATES
@@ -1973,6 +1998,43 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# JOUGa2017_v1_nc <- read.csv(paste0(dir, 'Nest_coords/JOUGa2017_V1_nestcoords.csv'))
+# JOUGa2017_v2_nc <- read.csv(paste0(dir, 'Nest_coords/JOUGa2017_V2_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# JOUGa2017_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/JOUGa2017_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/JOUGa2017/')
+# output_dir <- paste0(dir, 'QC_images/JOUGa2017/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = JOUGa2017_v1_nc,
+#            consensus = JOUGa2017_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'JOUGa2017a_000001.JPG',
+#            img_end = 'JOUGa2017a_000197.JPG',
+#            keep = 'half')
+# 
+# pt_img_fun(nest_coords = JOUGa2017_v2_nc,
+#            consensus = JOUGa2017_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            img_st = 'JOUGa2017a_000199.JPG',
+#            img_end = 'JOUGa2017a_000799.JPG',
+#            keep = 'half')
 
 
 # # MIKKa2017 ---------------------------------------------------------------
@@ -2047,6 +2109,31 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# MIKKa2018_nc <- read.csv(paste0(dir, 'Nest_coords/MIKKa2018_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# MIKKa2018_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/MIKKa2018_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/MIKKa2018/')
+# output_dir <- paste0(dir, 'QC_images/MIKKa2018/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = MIKKa2018_nc,
+#            consensus = MIKKa2018_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(1920, 1080),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+
+
+
 # BROWc2018 ---------------------------------------------------------------
 
 # #NEST COORDINATES
@@ -2070,25 +2157,29 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+
+
+
+
 # PETEe2015 ---------------------------------------------------------------
 
-#NEST COORDINATES
-PETEe2015_nc <- read.csv(paste0(dir, 'Nest_coords/PETEe2015_nestcoords.csv'))
-
-# set input/output
-jpeg_dir <- paste0(dir, 'Full_res_images/PETEe2015/')
-output_dir <- paste0(dir, 'Images_with_polys/PETEe2015/')
-
-# Run function
-pt_img_fun(nest_coords = PETEe2015_nc,
-           jpeg_dir = jpeg_dir,
-           output_dir = output_dir,
-           dim = c(2048, 1536),
-           poly_tr = 0.9,
-           TYPE = 'POLY',
-           NEST_IMG_SZ = 'FULL',
-           keep = 'half')
-
-#reduce size of large images for PW Pro
-rd_img_fun(output_dir)
+# #NEST COORDINATES
+# PETEe2015_nc <- read.csv(paste0(dir, 'Nest_coords/PETEe2015_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/PETEe2015/')
+# output_dir <- paste0(dir, 'Images_with_polys/PETEe2015/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = PETEe2015_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.9,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
 
