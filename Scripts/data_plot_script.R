@@ -2183,3 +2183,27 @@ rd_img_fun <- function(jpeg_dir)
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
 
+
+
+
+# BROWa2016 ---------------------------------------------------------------
+
+# #NEST COORDINATES
+# BROWa2016_nc <- read.csv(paste0(dir, 'Nest_coords/BROWa2016_nestcoords.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/BROWa2016/')
+# output_dir <- paste0(dir, 'Images_with_polys/BROWa2016/')
+# 
+# # Run function
+# pt_img_fun(nest_coords = BROWa2016_nc,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.9,
+#            TYPE = 'POLY',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+# 
+# #reduce size of large images for PW Pro
+# rd_img_fun(output_dir)
