@@ -2184,6 +2184,29 @@ rd_img_fun <- function(jpeg_dir)
 # rd_img_fun(output_dir)
 
 
+# #BOTH
+# #NEST COORDINATES
+# PETEe2015_nc <- read.csv(paste0(dir, 'Nest_coords/PETEe2015_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# PETEe2015_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/PETEe2015_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/PETEe2015/')
+# output_dir <- paste0(dir, 'QC_images/PETEe2015/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = PETEe2015_nc,
+#            consensus = PETEe2015_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
+
 
 
 # BROWa2016 ---------------------------------------------------------------
@@ -2207,3 +2230,26 @@ rd_img_fun <- function(jpeg_dir)
 # 
 # #reduce size of large images for PW Pro
 # rd_img_fun(output_dir)
+
+# #BOTH
+# #NEST COORDINATES
+# BROWa2016_nc <- read.csv(paste0(dir, 'Nest_coords/BROWa2016_nestcoords.csv'))
+# 
+# #PW PRO CLICKS
+# BROWa2016_con <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/BROWa2016_classifications.csv'))
+# 
+# # set input/output
+# jpeg_dir <- paste0(dir, 'Full_res_images/BROWa2016/')
+# output_dir <- paste0(dir, 'QC_images/BROWa2016/')
+# 
+# 
+# # Run function
+# pt_img_fun(nest_coords = BROWa2016_nc,
+#            consensus = BROWa2016_con,
+#            jpeg_dir = jpeg_dir,
+#            output_dir = output_dir,
+#            dim = c(2048, 1536),
+#            poly_tr = 0.6,
+#            TYPE = 'BOTH',
+#            NEST_IMG_SZ = 'FULL',
+#            keep = 'half')
