@@ -47,12 +47,10 @@ dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
 # Load packages -----------------------------------------------------------
 
 #install.packages("deldir", dependencies = TRUE)
-#install.packages("SDMTools", dependencies = TRUE)
 #install.packages("dplyr", dependencies = TRUE)
 ##install.packages("tidyr", dependencies = TRUE)
 ##install.packages("jpeg", dependencies = TRUE)
 
-library(SDMTools)
 library(deldir)
 library(dplyr)
 library(jpeg)
@@ -139,7 +137,7 @@ pt_img_fun <- function(nest_coords,
     height <- DIM[2]
     
     #Voronoi tesselation using specified nest sites - deldir makes tesselation
-    vt <- suppressWarnings(deldir(KM_REV_ORTHO[,1], KM_REV_ORTHO[,2], 
+    vt <- suppressWarnings(deldir::deldir(KM_REV_ORTHO[,1], KM_REV_ORTHO[,2], 
                                   rw= c(0, width, 0, height)))
     
     w <- tile.list(vt) #polygon coordinates
@@ -158,7 +156,7 @@ pt_img_fun <- function(nest_coords,
   plot_jpeg = function(path, add=FALSE)
   {
     par(mar=  c(0,0,0,0))
-    jpg = readJPEG(path, native=T) # read the file
+    jpg = jpeg::readJPEG(path, native=T) # read the file
     res = dim(jpg)[1:2] # get the resolution
     if (!add) # initialize an empty plot area if add==FALSE
       plot(1,1,xlim=c(1,res[2]),ylim=c(1,res[1]),asp=1,type='n',xaxs='i',yaxs='i',xaxt='n',yaxt='n',xlab='',ylab='',bty='n')
@@ -266,7 +264,7 @@ pt_img_fun <- function(nest_coords,
   cols <- gg_color_hue(NROW(NEST_COORDS), ALPHA = 0.7)
   
   #vector of numbers to plot for nests
-  let <- str_pad(1:99, 2, pad = '0')
+  let <- stringr::str_pad(1:99, 2, pad = '0')
   
   if (!is.null(img_st) & !is.null(img_end))
   {
