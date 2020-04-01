@@ -172,50 +172,24 @@ pt_img_fun <- function(nest_coords,
   }
   
   #-----------#
-  # #test data
-  # dir <- '~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/'
-  # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2017')
-  # output_dir <- paste0(dir, 'QC_images/test/')
-  # nest_coords <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V1_nestcoords.csv'))
-  # consensus <- read.csv(paste0(dir, 'Consensus_data/PW_Pro_clicks/CUVEb2014_classifications.csv'))
-  # jpeg_dir = jpeg_dir
-  # output_dir = output_dir
-  # #dim = c(1920, 1080)
-  # dim = c(2048, 1536)
-  # poly_tr = 0.6
-  # TYPE = ''
-  # img_st = 'GEORa2017a_000341'
-  # img_end = 'GEORa2017a_000700'
-  # plot_jpeg('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Full_res_images/NEKOc2013/NEKOc2013c_000468.JPG')
-  # NEST_COORDS <- trans_fun(nest_coords, TYPE = 'COORDS', NEST_IMG_SZ = 'FULL', DIM = dim)
-  # CONSENSUS <- trans_fun(consensus, TYPE = 'CONSENSUS', NEST_IMG_SZ = 'FULL', DIM = dim)
-  # #points(NEST_COORDS, col = rgb(1,0,0,0.8), pch = 19)
-  # polys <- poly_fun(NEST_COORDS, DIM = dim)
-  # for (j in 1:length(polys))
-  # {
-  #   #j <- 1
-  #   #plot polygons
-  #   lines(polys[[j]], lwd = 4, col = rgb(0,1,0,poly_tr))
-  # }
-  # points(CONSENSUS$x, CONSENSUS$y, col = rgb(0,1,0,0.8), pch = '.')
-  # GEORa2017_nc_V1 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V1_nestcoords.csv'))
-  # GEORa2017_nc_V2 <- read.csv(paste0(dir, 'Nest_coords/GEORa2017_V2_nestcoords.csv'))
-  # 
-  # # set input/output
-  # jpeg_dir <- paste0(dir, 'Full_res_images/GEORa2017/')
-  # output_dir <- paste0(dir, 'Images_with_polys/GEORa2017/')
-  # 
-  # # Run function - start end must be even numbers (if starting image is even) if keeping half
-  # nest_coords = GEORa2017_nc_V1
-  #            jpeg_dir = jpeg_dir
-  #            output_dir = output_dir
-  #            dim = c(2048, 1536)
-  #            poly_tr = 0.6
-  #            TYPE = 'POLY'
-  #            NEST_IMG_SZ = 'FULL'
-  #            img_st = 'GEORa2017a_000180.JPG'
-  #            img_end = 'GEORa2017a_000340.JPG'
-  #            keep = 'half'
+  # Run function - start end must be even numbers (if starting image is even) if keeping half
+  NEKOc2013_nc <- read.csv('~/Google_Drive/Research/Projects/Penguin_watch/PW_surv_model_data/Nest_coords/NEKOc2013_nestcoords.csv')
+  jpeg_dir <- getwd()
+  output_dir <- getwd()
+  nest_coords = NEKOc2013_nc
+  dim = c(2048, 1536)
+  poly_tr = 0.6
+  TYPE = 'POLY'
+  NEST_IMG_SZ = 'PARTIAL'
+  
+  jpeg('img_nests_tess.jpg', width = 2048, height = 1536)
+  plot_jpeg('NEKOc2013c_000468.JPG')
+  points(NEST_COORDS, col = 'blue', pch = 19, cex = 8)
+  for (j in 1:length(polys))
+  {
+    lines(polys[[j]], lwd = 12, col = rgb(0,1,0,0.6))
+  }
+  dev.off()
   #-----------#
   
   NEST_COORDS <- trans_fun(nest_coords, NEST_IMG_SZ = NEST_IMG_SZ, TYPE = 'COORDS', DIM = dim)
@@ -278,9 +252,9 @@ pt_img_fun <- function(nest_coords,
   #loop to plot camera image with nest 'zones', nest numbers, and consensus chick clicks
   for (i in 1:length(jpeg_files_list))
   {
-    #i <- 301
+    #i <- 1
     #create jpeg
-    jpeg(filename = paste0(output_dir, jpeg_files_list[i]), width = dim[1], height = dim[2])
+    jpeg(filename = paste0(output_dir, jpeg_files_list[i], '2'), width = dim[1], height = dim[2])
     
     if (TYPE != 'BOTH')
     {
